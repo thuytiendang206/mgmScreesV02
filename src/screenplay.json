@@ -1,0 +1,7 @@
+{
+  "display-time": 10,
+  "screen-apps": [
+    {"type" : "Hello"},
+    {"type" : "Clock"}
+  ]
+}

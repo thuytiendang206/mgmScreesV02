@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-
 import './App.css';
- import Hello from './components/Hello'
-
+import TogglePages from './TogglePages.js';
+let data = require('./screenplay.json');
 class App extends Component {
   render() {
     return (
       <div className="App">
-       <Hello text="Hello World"></Hello>
+        <TogglePages url={data}/>
       </div>
     );
   }

@@ -1,11 +1,9 @@
 import React from 'react';
 
 class Hello extends React.Component {
-
-
     render() {
         return (
-                <h1 className="title"  > {this.props.text}</h1>
+            <h1 className="title">Hello MGM</h1>
         );
     }
 };
