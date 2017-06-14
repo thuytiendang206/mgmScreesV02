@@ -7,6 +7,9 @@ class Clock extends React.Component{
             time : Date().toString()
         }
     }
+    static getType() {
+        return "Clock";
+    }
     render(){
         return (
             <p className="App-clock">

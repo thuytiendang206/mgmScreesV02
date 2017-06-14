@@ -20,7 +20,7 @@ class TogglePages extends React.Component {
     for (let i = 0; i < this.props.url['screen-apps'].length; i++) {
       let str = this.props.url['screen-apps'][i]['type'];
       for (let j = 0; j < typesContain.length; j++) {
-        if (str === typesContain[j].name) {
+        if (str === typesContain[j].getType()) {
           types.push(typesContain[j]);
           break;
         }
