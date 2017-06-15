@@ -5,7 +5,8 @@
   "dependencies": {
     "moment-timezone": "^0.5.13",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "react-slick": "^0.14.11"
   },
   "devDependencies": {
     "react-scripts": "1.0.7"

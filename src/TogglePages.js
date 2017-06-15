@@ -2,8 +2,11 @@ import React, {Component} from 'react';
 import Clock from './components/Clock';
 import Hello from './components/Hello.js';
 import Website from './components/Website.js';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 class TogglePages extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       screens: this.getPages(),
@@ -37,24 +40,26 @@ class TogglePages extends React.Component {
     return types;
   }
 
-  timer() {
-    this.setState({
-      screens: [...this.state.screens.slice(1), this.state.screens[0]]
-    })
-  }
-
-  componentDidMount() {
-    this.intervalId = setInterval(this.timer.bind(this), this.state.displayTime * 1000);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.intervalId);
-  }
-
   render() {
+    var settings = {
+      accessibility: false,
+      draggable: false,
+      infinite: true,
+      dots: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: this.state.displayTime * 1000,
+      lazyLoad: true,
+      rtl: false,
+      pauseOnHover: false
+    }
     return (
-        this.state.screens[0]
-    ) 
+      <Slider  {...settings}>
+        {this.state.screens.map(screen => <div>{React.createElement(screen)}</div>)}
+      </Slider>
+    )
   }
 }
 
