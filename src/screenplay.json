@@ -1,5 +1,6 @@
 {
   "display-time": 10,
+  "animation-type" : "slide-left",
   "screen-apps": [
     {
       "type": "Website",

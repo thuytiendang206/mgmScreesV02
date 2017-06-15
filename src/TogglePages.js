@@ -18,6 +18,17 @@ class TogglePages extends React.Component {
     return this.props.url['display-time'];
   }
 
+  isAnimationFade(){
+    if(this.props.url['animation-type']==='fade') return true
+    else return false
+  }
+
+  isAnimationRevertDirection(){
+    if(this.props.url['animation-type']==='slide-right') return true
+    else return false
+  }
+
+  //Change string array to component array
   getPages() {
     let typesContain = [<Hello/>, <Clock/>];
     let types = [];
@@ -41,6 +52,7 @@ class TogglePages extends React.Component {
   }
 
   render() {
+    //default animation is slide-left
     var settings = {
       accessibility: false,
       draggable: false,
@@ -51,13 +63,17 @@ class TogglePages extends React.Component {
       slidesToScroll: 1,
       autoplay: true,
       autoplaySpeed: this.state.displayTime * 1000,
-      lazyLoad: true,
-      rtl: false,
       pauseOnHover: false
+    }
+    if(this.isAnimationFade()){
+      settings = {...settings, fade:true}
+    }
+    if(this.isAnimationRevertDirection()){
+      settings = {...settings, rtl:true}
     }
     return (
       <Slider  {...settings}>
-        {this.state.screens.map(screen => <div>{React.createElement(screen)}</div>)}
+        {this.state.screens.map((screen, index) => <div key = {index}>{screen}</div>)}
       </Slider>
     )
   }
