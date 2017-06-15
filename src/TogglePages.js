@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import Clock from './components/Clock';
 import Hello from './components/Hello.js';
-class TogglePages extends Component {
-  constructor(props) {
+import Website from './components/Website.js';
+class TogglePages extends React.Component {
+  constructor(props){
     super(props);
     this.state = {
       screens: this.getPages(),
@@ -21,6 +22,8 @@ class TogglePages extends Component {
     for (let i = 0; i < url.length; i++) {
       if (url[i]['type'] === Clock.getType()) {
         types.push(<Clock utcDiff={url[i]['params']['utc-diff']} city={url[i]['params']['city']}/>)
+      } else if (url[i]['type'] === Website.getType()) {
+          types.push(<Website url={url[i]['params']['url']}/>);
       } else {
         let str = url[i]['type'];
         for (let j = 0; j < typesContain.length; j++) {
@@ -49,8 +52,9 @@ class TogglePages extends Component {
   }
 
   render() {
-    var Child = this.state.screens[0];
-    return Child;
+    return (
+        this.state.screens[0]
+    ) 
   }
 }
 
