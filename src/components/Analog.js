@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import moment from 'moment-timezone';
 
 class Analog extends React.Component {
     constructor(props) {
@@ -62,10 +63,12 @@ class Analog extends React.Component {
         }
     }
     drawTime(ctx, radius) {
-        var now = new Date();
-        var hour = now.getHours();
-        var minute = now.getMinutes();
-        var second = now.getSeconds();
+        var formatH = 'HH';
+        var formatM = 'mm';
+        var formatS = 'ss';
+        var hour = moment().utcOffset(this.props.utcDiff*60).format(formatH);
+        var minute = moment().utcOffset(this.props.utcDiff*60).format(formatM);
+        var second = moment().utcOffset(this.props.utcDiff*60).format(formatS);
         //hour
         hour = hour % 12;
         hour = (hour * Math.PI / 6) +
