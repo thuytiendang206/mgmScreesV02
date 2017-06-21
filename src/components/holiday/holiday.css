@@ -1,0 +1,108 @@
+.holiday-Bg{
+	background-image: url("../../static/resources/image/holiday_bg.jpg");
+	background-position: center center;
+	height: 100vh;
+}
+
+
+
+/* latin */
+@font-face {
+  font-family: 'Bangers';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Bangers Regular'), local('Bangers-Regular'), url("../../static/resources/file/fonts/bangers.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+.holiday-title {
+  text-align: center;
+  font-weight: normal;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 8em;
+  white-space: nowrap;
+  font-size: 4vw;
+  z-index: 1000;
+  font-family: 'Bangers', cursive;
+  text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.7);
+  -moz-transform: skew(0, 0);
+  -ms-transform: skew(0, 0);
+  -webkit-transform: skew(0, 0);
+  transform: skew(0, 0);
+  -moz-transition-property: font-size;
+  -o-transition-property: font-size;
+  -webkit-transition-property: font-size;
+  transition-property: font-size;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+
+.holiday-todayItem div:nth-child(odd){
+  background-color: lightgrey;
+}
+
+.eachItem{
+    min-height: 20px;
+    margin-bottom: 10px;
+    background-color: lightgrey;
+    font-size: 13px;
+
+}
+
+.margin15{
+  margin-right: 15px
+}
+
+img.logoOffices{
+  width: 20px;
+  height: 20px;
+  display: inline-flex !important;
+}
+
+img.square{
+  visibility: hidden;
+  width: 20px;
+  height: 20px;
+  display: inline-flex !important;
+}
+
+img.squareNoWidth{
+  visibility: hidden;
+  width: 1px;
+  height: 20px;
+  display: inline-flex !important;
+}
+
+.text-green{
+  color: green;
+  font-weight: bold;
+}
+
+@media screen and (min-width: 1920px ){
+  .eachItem{
+    min-height: 50px;
+    margin-bottom: 10px;
+    background-color: lightgrey;
+    font-size: 20px;
+  }
+
+  img.logoOffices{
+    width: 50px;
+    height: 50px;
+  }
+  
+  img.square{
+    visibility: hidden;
+    width: 50px;
+    height: 50px;
+  }
+
+  img.squareNoWidth{
+    visibility: hidden;
+    width: 1px;
+    height: 50px;
+  }
+}

@@ -111,6 +111,7 @@
         "city": "Dresden, Germany"
       } 
     },
-    {"type" : "Hello"}     
+    {"type" : "Hello"},
+    {"type" : "Holiday"}      
   ]
 }

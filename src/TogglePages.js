@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Clock from './components/Clock';
 import Hello from './components/Hello.js';
 import Website from './components/Website.js';
+import Holiday from './components/holiday/Holiday.js';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -30,7 +31,7 @@ class TogglePages extends React.Component {
 
   //Change string array to component array
   getPages() {
-    let typesContain = [<Hello/>, <Clock/>];
+    let typesContain = [<Hello/>, <Clock/>, <Holiday/>];
     let types = [];
     let url = this.props.url['screen-apps'];
     for (let i = 0; i < url.length; i++) {
