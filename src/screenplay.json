@@ -3,15 +3,15 @@
   "animation-type" : "slide-left",
   "screen-apps": [
     {
-      "type": "Website",
+      "type": "Facebook",
       "params": {
-        "url": "http://www.facebook.com/plugins/likebox.php?href=https://www.facebook.com/mgmTechnologyPartnersVietnam/&width=500&colorscheme=light&show_faces=true&border_color&stream=true&header=true&height=800"
+        "url": "mgmTechnologyPartnersVietnam/"
       }
     },
     {
       "type": "Website",
       "params": {
-        "url": "https://www.mgmtp.com"
+        "url": "https://www.mgmtp.com/"
       }
     },
     {"type" : "Hello"},
