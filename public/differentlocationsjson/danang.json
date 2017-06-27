@@ -1,0 +1,28 @@
+{
+  "display-time": 10,
+  "animation-type" : "slide-left",
+  "screen-apps": [
+    {"type" : "Danang"},
+    {
+      "type": "Website",
+      "params": {
+        "url": "http://www.facebook.com/plugins/likebox.php?href=https://www.facebook.com/mgmTechnologyPartnersVietnam/&width=500&colorscheme=light&show_faces=true&border_color&stream=true&header=true&height=800"
+      }
+    },
+    {
+      "type": "Website",
+      "params": {
+        "url": "https://www.mgmtp.com"
+      }
+    },
+    {"type" : "Hello"},
+    {
+      "type": "Clock",
+      "params": 
+      {
+        "utc-diff": 7 ,
+        "city" : "Da Nang, Viet Nam"
+      }
+    }     
+  ]
+}
