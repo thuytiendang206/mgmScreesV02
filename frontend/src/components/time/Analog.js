@@ -91,8 +91,11 @@ class Analog extends React.Component {
     
     componentDidMount() {
         var tmpradius ;
-        var canvas = ReactDOM.findDOMNode(this.refs.mycanvas);
-        // 2 directions width and height
+        var canvas = this.refs.mycanvas;
+        var container = this.refs.container;
+        canvas.height = container.clientWidth < container.clientHeight ? container.clientWidth : container.clientHeight ;
+        canvas.width = canvas.height ;
+
         this.setState(
             {
                 ctx: canvas.getContext("2d"),
@@ -113,8 +116,8 @@ class Analog extends React.Component {
 
     render() {
         return (
-            <div className='analog'>
-                <canvas ref="mycanvas" width={this.props.width} height={this.props.height} ></canvas>
+            <div className='analog' ref='container' >
+                <canvas className="canvas" ref="mycanvas"></canvas>
             </div>
         );
     }

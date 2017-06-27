@@ -4,17 +4,18 @@ import Hello from '../hello/Hello.js';
 import Website from '../website/Website.js';
 import Holiday from '../holiday/Holiday.js';
 import FacebookPage from '../facebookComponent/FacebookPage.js';
-import Slider from 'react-slick';
 import Danang from '../danang/Danang.js';
 import Hamburg from '../hamburg/Hamburg.js';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import {CSSTransitionGroup} from 'react-transition-group';
+import './TogglePages.css';
 class TogglePages extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      screens: this.getPages(),
-      displayTime: this.getTime()
+        screens: this.getPages(),
+        displayTime: this.getTime(),
+        key : 1,
+        animations: this.getAnimations()
     }
   }
 
@@ -22,32 +23,22 @@ class TogglePages extends React.Component {
     return this.props.url['display-time'];
   }
 
-  isAnimationFade(){
-    if(this.props.url['animation-type']==='fade') return true
-    else return false
-  }
-
-  isAnimationRevertDirection(){
-    if(this.props.url['animation-type']==='slide-right') return true
-    else return false
-  }
-
   //Change string array to component array
   getPages() {
-    let typesContain = [<Hello/>, <Clock/>, <Holiday/>, <Hamburg/>, <Danang/>];
+    let typesContain = [<Hello key="Hello"/>,<Holiday key="Holiday"/>, <Hamburg key="Hamburg"/>, <Danang key="Danang"/>];
     let types = [];
     let url = this.props.url['screen-apps'];
     for (let i = 0; i < url.length; i++) {
       if (url[i]['type'] === Clock.getType()) {
-        types.push(<Clock utcDiff={url[i]['params']['utc-diff']} city={url[i]['params']['city']}/>)
+        types.push(<Clock key={url[i]['params']['city']} utcDiff={url[i]['params']['utc-diff']} city={url[i]['params']['city']}/>)
       } else if (url[i]['type'] === Website.getType()) {
-          types.push(<Website url={url[i]['params']['url']}/>);
+          types.push(<Website key={url[i]['params']['url']} url={url[i]['params']['url']}/>);
       } else if (url[i]['type'] === FacebookPage.getType()) {
-          types.push(<FacebookPage url={url[i]['params']['url']}/>);
-      } else {
+		  types.push(<FacebookPage url={url[i]['params']['url']}/>);
+	  } else {
         let str = url[i]['type'];
-        for (let j = 0; j < typesContain.length; j++) {
-          if (str === typesContain[j].type.getType()) {
+        for (let j=0; j<typesContain.length; j++) {
+          if (str===typesContain[j].type.getType()) {
             types.push(typesContain[j]);
             break;
           }
@@ -57,31 +48,42 @@ class TogglePages extends React.Component {
     return types;
   }
 
+  getAnimations(){
+    let animation = [];
+    let url = this.props.url['screen-apps'];
+    for(let i = 0; i < url.length; i++){
+      animation.push(url[i]['animation-type']);
+    }
+    return animation;
+  }
+
+  timer() {
+    this.setState({
+      screens: [...this.state.screens.slice(1), this.state.screens[0]],
+      animations: [...this.state.animations.slice(1), this.state.animations[0]]
+    })
+  }
+  componentDidMount() {
+    this.intervalId = setInterval(this.timer.bind(this), this.state.displayTime*1000);
+  }
+  componentWillUnmount(){
+    clearInterval(this.intervalId);
+  }
   render() {
-    //default animation is slide-left
-    var settings = {
-      accessibility: false,
-      draggable: false,
-      infinite: true,
-      dots: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      autoplay: true,
-      autoplaySpeed: this.state.displayTime * 1000,
-      pauseOnHover: false
-    }
-    if(this.isAnimationFade()){
-      settings = {...settings, fade:true}
-    }
-    if(this.isAnimationRevertDirection()){
-      settings = {...settings, rtl:true}
-    }
+    var Child = this.state.screens[0];
     return (
-      <Slider  {...settings}>
-        {this.state.screens.map((screen, index) => <div key = {index}>{screen}</div>)}
-      </Slider>
-    )
+       <div>
+       <CSSTransitionGroup
+          className="container"
+          component="div"
+          transitionName = {this.state.animations[0]}
+          transitionEnterTimeout={1000}
+          transitionLeaveTimeout={1000}
+        >
+          {Child}
+        </CSSTransitionGroup>
+      </div>
+    ) ;
   }
 }
 
