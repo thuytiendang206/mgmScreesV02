@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
-import TogglePages from './TogglePages.js';
-import Error from './components/error404/Error';
+import TogglePages from '../togglePages/TogglePages.js';
+import Error from '../error404/Error';
 import axios from 'axios';
 class App extends Component {
    constructor(props) {

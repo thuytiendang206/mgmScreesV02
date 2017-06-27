@@ -1,12 +1,12 @@
 import React from 'react';
-import Clock from './components/Clock';
-import Hello from './components/Hello.js';
-import Website from './components/Website.js';
-import Holiday from './components/holiday/Holiday.js';
-import FacebookPage from './components/FacebookComponent/FacebookPage.js';
+import Clock from '../time/Clock';
+import Hello from '../hello/Hello.js';
+import Website from '../website/Website.js';
+import Holiday from '../holiday/Holiday.js';
+import FacebookPage from '../facebookComponent/FacebookPage.js';
 import Slider from 'react-slick';
-import Danang from './components/danang/Danang.js';
-import Hamburg from './components/hamburg/Hamburg.js';
+import Danang from '../danang/Danang.js';
+import Hamburg from '../hamburg/Hamburg.js';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 class TogglePages extends React.Component {
