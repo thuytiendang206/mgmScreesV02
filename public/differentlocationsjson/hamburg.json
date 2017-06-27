@@ -1,0 +1,15 @@
+{
+  "display-time": 10,
+  "animation-type" : "slide-left",
+  "screen-apps": [  
+    {"type" : "Hamburg"},
+    {
+      "type": "Clock",
+      "params": 
+      {
+        "utc-diff": 2,
+        "city": "Hamburg, Germany"
+      } 
+    }     
+  ]
+}
