@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Clock from './components/Clock';
 import Hello from './components/Hello.js';
 import Website from './components/Website.js';
 import Holiday from './components/holiday/Holiday.js';
+import FacebookPage from './components/FacebookComponent/FacebookPage.js';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -39,6 +40,8 @@ class TogglePages extends React.Component {
         types.push(<Clock utcDiff={url[i]['params']['utc-diff']} city={url[i]['params']['city']}/>)
       } else if (url[i]['type'] === Website.getType()) {
           types.push(<Website url={url[i]['params']['url']}/>);
+      } else if (url[i]['type'] === FacebookPage.getType()) {
+          types.push(<FacebookPage url={url[i]['params']['url']}/>);
       } else {
         let str = url[i]['type'];
         for (let j = 0; j < typesContain.length; j++) {

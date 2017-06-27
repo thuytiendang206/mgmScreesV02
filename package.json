@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.16.2",
+    "bootstrap": "^3.3.7",
     "date-holidays": "^1.0.0",
+    "fb-react-sdk": "^1.0.4",
     "moment-timezone": "^0.5.13",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",

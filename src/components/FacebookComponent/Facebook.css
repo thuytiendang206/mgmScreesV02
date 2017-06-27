@@ -1,0 +1,48 @@
+/* custom template */
+#main {
+   background-color:#e9eaed;
+   margin: 0;
+   height: 100vh;
+   font-family: verdana;
+   text-align: justify;
+   font-size: 120%;
+}
+
+
+.timelinePhoto{
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 70vh;
+}
+
+.media{
+  text-align: center;
+}
+
+.icons {
+  margin: 6px;
+  margin-left: 5%;
+}
+
+.navbar-blue {
+	background-color:#3B5999;
+  color:#ffffff;
+  font-family:arial,sans-serif;
+  margin: 0;
+}
+
+/* bootstrap overrides */
+.panel-default .panel-heading {
+  background-color:#f9fafb;
+  color:#555555;
+}
+
+.panel-heading{
+  height: 9vh;
+}
+
+.row {
+  margin: 1%;
+}
+
