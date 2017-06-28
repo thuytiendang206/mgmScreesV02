@@ -1,11 +1,29 @@
 {
   "display-time": 10,
   "screen-apps": [
-    {"type" : "Hello"},
-    {"type" : "Holiday"},
+    {"type" : "Hello",
+    "animation-type" : "fade"},
+
+    {
+      "type": "Website",
+      "animation-type" : "slide-left",
+      "params": {
+        "url": "http://www.facebook.com/plugins/likebox.php?href=https://www.facebook.com/mgmTechnologyPartnersVietnam/&width=500&colorscheme=light&show_faces=true&border_color&stream=true&header=true&height=800"
+      }
+    },
+    {
+      "type": "Website",
+      "animation-type" : "slide-right",
+      "params": {
+        "url": "https://www.mgmtp.com"
+      }
+    },
+    {"type" : "Hello",
+    "animation-type" : "fade"},
     {
       "type": "Clock",
-      "params": 
+      "animation-type" : "slide-right",
+      "params":
       {
         "utc-diff": 7 ,
         "city" : "Da Nang, Viet Nam"
@@ -13,19 +31,22 @@
     },
     {
       "type": "Website",
+      "animation-type" : "slide-right",
       "params": {
         "url": "https://www.mgmtp.com"
       }
     },
     {
       "type": "Website",
+      "animation-type" : "slide-right",
       "params": {
         "url": "http://www.facebook.com/plugins/likebox.php?href=https://www.facebook.com/mgmTechnologyPartnersVietnam/&width=500&colorscheme=light&show_faces=true&border_color&stream=true&header=true&height=800"
       }
     },
     {
       "type": "Clock",
-      "params": 
+      "animation-type" : "fade",
+      "params":
       {
         "utc-diff": 2 ,
         "city": "Munich, Germany"
@@ -33,7 +54,8 @@
     },
     {
       "type": "Clock",
-      "params": 
+      "animation-type" : "slide-left",
+      "params":
       {
         "utc-diff": 2,
         "city": "Hamburg, Germany"
@@ -41,7 +63,8 @@
     },
     {
       "type": "Clock",
-      "params": 
+      "animation-type" : "slide-left",
+      "params":
       {
         "utc-diff": -4,
         "city": "Washington DC, USA"
@@ -49,7 +72,8 @@
     },
     {
       "type": "Clock",
-      "params": 
+      "animation-type" : "slide-right",
+      "params":
       {
         "utc-diff": 2,
         "city": "Prague, Czech Republic"
@@ -57,7 +81,8 @@
     },
     {
       "type": "Clock",
-      "params": 
+      "animation-type" : "slide-right",
+      "params":
       {
         "utc-diff": 2,
         "city": "Grenoble, France"
@@ -65,7 +90,8 @@
     },
     {
       "type": "Clock",
-      "params": 
+      "animation-type" : "slide-right",
+      "params":
       {
         "utc-diff": 2,
         "city": "Nuremberg, Germany"
@@ -73,7 +99,8 @@
     },
     {
       "type": "Clock",
-      "params": 
+      "animation-type" : "slide-right",
+      "params":
       {
         "utc-diff": 2,
         "city": "Cologne, Germany"
@@ -81,7 +108,8 @@
     },
     {
       "type": "Clock",
-      "params": 
+      "animation-type" : "fade",
+      "params":
       {
         "utc-diff": 2,
         "city": "Berlin, Germany"
@@ -89,7 +117,8 @@
     },
     {
       "type": "Clock",
-      "params": 
+      "animation-type" : "slide-right",
+      "params":
       {
         "utc-diff": 2,
         "city": "Zug, Switzerland"
@@ -97,7 +126,8 @@
     },
     {
       "type": "Clock",
-      "params": 
+      "animation-type" : "slide-left",
+      "params":
       {
         "utc-diff": 2,
         "city": "Leipzig, Germany"
@@ -105,12 +135,20 @@
     },
     {
       "type": "Clock",
-      "params": 
+      "animation-type" : "slide-left",
+      "params":
       {
         "utc-diff": 2,
         "city": "Dresden, Germany"
       } 
     },
-    {"type" : "Hello"}     
+    {
+      "type" : "Hello",
+      "animation-type" : "slide-fade"
+    },
+    {
+      "type" : "Holiday",
+      "animation-type" : "slide-right"
+    }
   ]
 }

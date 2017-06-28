@@ -33,7 +33,7 @@ class Clock extends React.Component{
     render(){
         return(
             <div className="clock">
-                <Analog utcDiff={this.props.utcDiff} city={this.props.city} width='400' height='400'/>
+                <Analog utcDiff={this.props.utcDiff} city={this.props.city} />
                 <h2 className="time"> {this.state.time} </h2>
                 <h2 className="date"> {this.state.date}</h2>
                 <h2 className="date"> {this.props.city}</h2>
