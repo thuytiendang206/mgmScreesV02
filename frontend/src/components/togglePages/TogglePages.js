@@ -30,12 +30,28 @@ class TogglePages extends React.Component {
     let url = this.props.url['screen-apps'];
     for (let i = 0; i < url.length; i++) {
       if (url[i]['type'] === Clock.getType()) {
-        types.push(<Clock key={url[i]['params']['city']} utcDiff={url[i]['params']['utc-diff']} city={url[i]['params']['city']}/>)
+        types.push(
+          <Clock
+		    key={i}
+            utcDiff={url[i]['params']['utc-diff']}
+            city={url[i]['params']['city']}
+          />
+          );
       } else if (url[i]['type'] === Website.getType()) {
-          types.push(<Website key={url[i]['params']['url']} url={url[i]['params']['url']}/>);
+          types.push(
+            <Website
+		      key={i}
+              url={url[i]['params']['url']}
+            />
+          );
       } else if (url[i]['type'] === FacebookPage.getType()) {
-		  types.push(<FacebookPage url={url[i]['params']['url']}/>);
-	  } else {
+          types.push(
+            <FacebookPage
+		      key={i}
+              params={url[i]['params']}
+            />
+          );
+      } else {
         let str = url[i]['type'];
         for (let j=0; j<typesContain.length; j++) {
           if (str===typesContain[j].type.getType()) {

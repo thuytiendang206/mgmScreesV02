@@ -6,7 +6,7 @@ export default class FacebookItem extends Component {
         title="fb-video"
         src={this.props.item.source}
         frameBorder="0"
-        style={{ width: 100 + '%', height: 70 + 'vh' }}
+        style={{ width: 100 + '%', height: 55 + 'vh' }}
       />
       : <img
         className="timelinePhoto"

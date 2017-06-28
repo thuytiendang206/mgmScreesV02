@@ -7,8 +7,7 @@ export default class FacebookPage extends Component {
   constructor(props) {
     super(props);
     this.state = ({ 
-      data: [],
-      about: [] 
+      data: []
     });
   }
 
@@ -17,9 +16,14 @@ export default class FacebookPage extends Component {
   }
 
   componentWillMount() {
-    const ACCESS_TOKEN = 'EAARPQIxk2QsBAGg0WshexQesN7UvFpTKrsZBPylDzhSuUkmnWZAZBtXlJ4qwdAXWaM62EgPfuHVo1FbTQXC8ZAvGEMz0uk0ZApxK6aXfGN6yu3qe1lnrN7F8Lmvii7ClxUzQb6Jj7UOpauC50iNZCUonsjILVif2wZD';
-    const DEFAULT_URL = 'https://graph.facebook.com/' + this.props.url;
-    const POST_URL = `${DEFAULT_URL}posts?access_token=${ACCESS_TOKEN}&fields=name,description,full_picture,source,message,place,properties,status_type,story,type,created_time&limit=2`;
+    const DEFAULT_URL = 'https://graph.facebook.com/' + this.props.params.url;
+    const ACCESS_TOKEN = 'access_token=EAARPQIxk2QsBAGg0WshexQesN7UvFpTKrsZBPylDzhSuUkmnWZAZBtXlJ4qwdAXWaM62EgPfuHVo1FbTQXC8ZAvGEMz0uk0ZApxK6aXfGN6yu3qe1lnrN7F8Lmvii7ClxUzQb6Jj7UOpauC50iNZCUonsjILVif2wZD';
+    const FIELDS = 'fields=name,description,full_picture,source,message,type,created_time';
+    var POST_URL = `${DEFAULT_URL}posts?${ACCESS_TOKEN}&${FIELDS}&limit=2`;
+    if(this.props.params['end-day']) {
+      const TIME_LIMIT = `since=${this.props.params['start-day']}&until=${this.props.params['end-day']}`;
+      POST_URL = `${POST_URL}&${TIME_LIMIT}`;
+    }
     axios.get(POST_URL).then(response => {
       this.setState({ data: response.data.data });
     })
@@ -34,7 +38,7 @@ export default class FacebookPage extends Component {
   render() {
     return (
       <div id="main"> 
-        <div className="navbar navbar-blue navbar-static-top">  
+        <div className="navbar-blue navbar-static-top">  
           <img src="images/fb-logo.png" className="icons" alt=""/>
         </div>
         <div className="container-fluid" >   
