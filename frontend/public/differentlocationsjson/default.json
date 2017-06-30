@@ -1,6 +1,59 @@
 {
-  "display-time": 3,
+  "display-time": 10,
   "screen-apps": [
+    {
+      "type": "Weather",
+      "animation-type" : "slide-right",
+      "params":
+      {
+        "city": "Da Nang",
+        "degrees" :"C"
+      }
+    },
+    {
+      "type" : "Hello",
+      "animation-type" : "fade"
+    },
+    {
+      "type": "Weather",
+      "animation-type" : "fade",
+      "params":
+      {
+        "city": "Munich",
+        "degrees" :"C"
+      }
+    },
+    {
+      "type": "Weather",
+      "animation-type" : "slide-left",
+      "params":
+      {
+        "city": "Washington DC",
+        "degrees" :"F"
+      }
+    },
+    {
+      "type": "Weather",
+      "animation-type" : "fade",
+      "params":
+      {
+        "city": "Hamburg",
+        "degrees" :"C"
+      }
+    },
+    {
+      "type": "Weather",
+      "animation-type" : "fade",
+      "params":
+      {
+        "city": "Prague",
+        "degrees" :"C"
+      }
+    },
+    {
+      "type" : "Hello",
+      "animation-type" : "fade"
+    },
     {
       "type": "Clock",
       "animation-type": "fade",
@@ -15,7 +68,7 @@
       "params": {
         "rows": 2,
         "columns": 2,
-        "content": [  
+        "content": [
           {
             "type": "Clock",
             "params": {
@@ -251,6 +304,24 @@
       "animation-type": "slide-left",
       "params": {
         "url": "http://www.facebook.com/plugins/likebox.php?href=https://www.facebook.com/mgmTechnologyPartnersVietnam/&width=500&colorscheme=light&show_faces=true&border_color&stream=true&header=true&height=800"
+      }
+    },
+     {
+      "type": "Weather",
+      "animation-type" : "slide-right",
+      "params":
+      {
+        "city": "Grenoble",
+        "degrees" :"C"
+      }
+    },
+     {
+      "type": "Weather",
+      "animation-type" : "fade",
+      "params":
+      {
+        "city": "Nuremberg",
+        "degrees" :"C"
       }
     },
     {

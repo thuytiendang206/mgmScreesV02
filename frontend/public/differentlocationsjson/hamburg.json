@@ -2,14 +2,27 @@
   "display-time": 10,
   "animation-type" : "slide-left",
   "screen-apps": [  
-    {"type" : "Hamburg"},
+    {
+      "type" : "Hamburg",
+      "animation-type" : "slide-right"
+    },
     {
       "type": "Clock",
+      "animation-type" : "slide-left",
       "params": 
       {
         "utc-diff": 2,
         "city": "Hamburg, Germany"
       } 
-    }     
+    },
+    {
+      "type": "Weather",
+      "animation-type" : "slide-right",
+      "params": 
+      {
+        "city": "Hamburg",
+        "degrees" :"C"
+      }
+    }    
   ]
 }

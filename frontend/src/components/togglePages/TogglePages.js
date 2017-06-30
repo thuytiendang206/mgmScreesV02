@@ -6,8 +6,10 @@ import Holiday from '../holiday/Holiday.js';
 import FacebookPage from '../facebookComponent/FacebookPage.js';
 import Danang from '../danang/Danang.js';
 import Hamburg from '../hamburg/Hamburg.js';
+import Weather from '../weather/Weather.js';
+import {CSSTransitionGroup} from 'react-transition-group';
 import MultipleScreen from '../multipleScreen/MultipleScreen.js';
-import { CSSTransitionGroup } from 'react-transition-group';
+
 import './TogglePages.css';
 class TogglePages extends React.Component {
   constructor(props) {
@@ -23,7 +25,6 @@ class TogglePages extends React.Component {
     return this.props.url['display-time'];
   }
 
-  //Change string array to component array
   getPages() {
     let typesContain = [<Hello key="Hello" />, <Holiday key="Holiday" />, <Hamburg key="Hamburg" />, <Danang key="Danang" />];
     let types = [];
@@ -45,9 +46,7 @@ class TogglePages extends React.Component {
             />
           );
       } else if (url[i]['type'] === FacebookPage.getType()) {
-          types.push(
-            <FacebookPage
-		      key={i}
+		  types.push(<FacebookPage key={i}
               params={url[i]['params']}
             />
           );
@@ -56,9 +55,10 @@ class TogglePages extends React.Component {
             <MultipleScreen
               key={i}
               setting={url[i]["params"]}
-              />);
-      }
-      else {
+              />);}
+	   else if (url[i]['type'] === Weather.getType()) {
+		  types.push(<Weather key={i} city={url[i]['params']['city']} degrees={url[i]['params']['degrees']}/>);
+	  } else{
         let str = url[i]['type'];
         for (let j = 0; j < typesContain.length; j++) {
           if (str === typesContain[j].type.getType()) {
