@@ -6,6 +6,7 @@ import Holiday from '../holiday/Holiday.js';
 import FacebookPage from '../facebookComponent/FacebookPage.js';
 import Danang from '../danang/Danang.js';
 import Hamburg from '../hamburg/Hamburg.js';
+import Weather from '../weather/Weather.js';
 import {CSSTransitionGroup} from 'react-transition-group';
 import './TogglePages.css';
 class TogglePages extends React.Component {
@@ -23,7 +24,6 @@ class TogglePages extends React.Component {
     return this.props.url['display-time'];
   }
 
-  //Change string array to component array
   getPages() {
     let typesContain = [<Hello key="Hello"/>,<Holiday key="Holiday"/>, <Hamburg key="Hamburg"/>, <Danang key="Danang"/>];
     let types = [];
@@ -35,6 +35,8 @@ class TogglePages extends React.Component {
           types.push(<Website key={url[i]['params']['url']} url={url[i]['params']['url']}/>);
       } else if (url[i]['type'] === FacebookPage.getType()) {
 		  types.push(<FacebookPage url={url[i]['params']['url']}/>);
+      } else if (url[i]['type'] === Weather.getType()) {
+		  types.push(<Weather key={i} city={url[i]['params']['city']} degrees={url[i]['params']['degrees']}/>);
 	  } else {
         let str = url[i]['type'];
         for (let j=0; j<typesContain.length; j++) {
