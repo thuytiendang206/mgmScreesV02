@@ -2,28 +2,12 @@
   "display-time": 10,
   "screen-apps": [
     {"type" : "Hello",
-    "animation-type" : "fade"},
-
-    {
-      "type": "Website",
-      "animation-type" : "slide-left",
-      "params": {
-        "url": "http://www.facebook.com/plugins/likebox.php?href=https://www.facebook.com/mgmTechnologyPartnersVietnam/&width=500&colorscheme=light&show_faces=true&border_color&stream=true&header=true&height=800"
-      }
+     "animation-type" : "fade"
     },
-    {
-      "type": "Website",
-      "animation-type" : "slide-right",
-      "params": {
-        "url": "https://www.mgmtp.com"
-      }
-    },
-    {"type" : "Hello",
-    "animation-type" : "fade"},
     {
       "type": "Clock",
       "animation-type" : "slide-right",
-      "params":
+      "params": 
       {
         "utc-diff": 7 ,
         "city" : "Da Nang, Viet Nam"
@@ -37,10 +21,19 @@
       }
     },
     {
-      "type": "Website",
+      "type": "Facebook",
       "animation-type" : "slide-right",
       "params": {
-        "url": "http://www.facebook.com/plugins/likebox.php?href=https://www.facebook.com/mgmTechnologyPartnersVietnam/&width=500&colorscheme=light&show_faces=true&border_color&stream=true&header=true&height=800"
+        "url": "mgmTechnologyPartnersVietnam/"
+      }
+    },
+    {
+      "type": "Facebook",
+      "animation-type" : "slide-right",
+      "params": {
+        "url": "mgmprague/",
+        "start-day": "1 May 2017",
+        "end-day": "15 May 2017"
       }
     },
     {
