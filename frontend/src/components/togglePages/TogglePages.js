@@ -6,16 +6,16 @@ import Holiday from '../holiday/Holiday.js';
 import FacebookPage from '../facebookComponent/FacebookPage.js';
 import Danang from '../danang/Danang.js';
 import Hamburg from '../hamburg/Hamburg.js';
-import {CSSTransitionGroup} from 'react-transition-group';
+import MultipleScreen from '../multipleScreen/MultipleScreen.js';
+import { CSSTransitionGroup } from 'react-transition-group';
 import './TogglePages.css';
 class TogglePages extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        screens: this.getPages(),
-        displayTime: this.getTime(),
-        key : 1,
-        animations: this.getAnimations()
+      screens: this.getPages(),
+      displayTime: this.getTime(),
+      animations: this.getAnimations()
     }
   }
 
@@ -25,7 +25,7 @@ class TogglePages extends React.Component {
 
   //Change string array to component array
   getPages() {
-    let typesContain = [<Hello key="Hello"/>,<Holiday key="Holiday"/>, <Hamburg key="Hamburg"/>, <Danang key="Danang"/>];
+    let typesContain = [<Hello key="Hello" />, <Holiday key="Holiday" />, <Hamburg key="Hamburg" />, <Danang key="Danang" />];
     let types = [];
     let url = this.props.url['screen-apps'];
     for (let i = 0; i < url.length; i++) {
@@ -51,10 +51,17 @@ class TogglePages extends React.Component {
               params={url[i]['params']}
             />
           );
-      } else {
+      } else if (url[i]['type'] === MultipleScreen.getType()) {
+          types.push(
+            <MultipleScreen
+              key={i}
+              setting={url[i]["params"]}
+              />);
+      }
+      else {
         let str = url[i]['type'];
-        for (let j=0; j<typesContain.length; j++) {
-          if (str===typesContain[j].type.getType()) {
+        for (let j = 0; j < typesContain.length; j++) {
+          if (str === typesContain[j].type.getType()) {
             types.push(typesContain[j]);
             break;
           }
@@ -64,10 +71,10 @@ class TogglePages extends React.Component {
     return types;
   }
 
-  getAnimations(){
+  getAnimations() {
     let animation = [];
     let url = this.props.url['screen-apps'];
-    for(let i = 0; i < url.length; i++){
+    for (let i = 0; i < url.length; i++) {
       animation.push(url[i]['animation-type']);
     }
     return animation;
@@ -80,26 +87,26 @@ class TogglePages extends React.Component {
     })
   }
   componentDidMount() {
-    this.intervalId = setInterval(this.timer.bind(this), this.state.displayTime*1000);
+    this.intervalId = setInterval(this.timer.bind(this), this.state.displayTime * 1000);
   }
-  componentWillUnmount(){
+  componentWillUnmount() {
     clearInterval(this.intervalId);
   }
   render() {
     var Child = this.state.screens[0];
     return (
-       <div>
-       <CSSTransitionGroup
+      <div>
+        <CSSTransitionGroup
           className="container"
           component="div"
-          transitionName = {this.state.animations[0]}
+          transitionName={this.state.animations[0]}
           transitionEnterTimeout={1000}
           transitionLeaveTimeout={1000}
         >
           {Child}
         </CSSTransitionGroup>
       </div>
-    ) ;
+    );
   }
 }
 

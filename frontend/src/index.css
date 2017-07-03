@@ -1,16 +1,29 @@
-
+*, *:before, *:after {
+    box-sizing: border-box;
+    left: 0px;
+}
 body {
-	line-height: 1;
-  font-family: sans-serif;
   margin: 0;
   padding: 0;
+  font-family: sans-serif;
 }
 .container{
   position: relative;
   width: 100%;
-
 }
-.clock{
+.rowClock {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+.cell {
+  flex-wrap: nowrap;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  overflow: hidden;
+}
+.container>.clock{
   display: flex;
   flex-direction: column;
   min-height: 99vh;
@@ -19,61 +32,79 @@ body {
   font-size: 2em;
   left: 0;
 }
-.analog{
+.rowClock>.clock {
+  height: 100%;
+  box-sizing: border-box;
+  border: 1px solid green;
+  color: #171e42;
+  margin: 0 auto;
+  display: flex;
+  flex: 1;
+  left: 0;
+}
+.rowClock>.clock>.text {
+   flex: 1;
+   font-size: 2vh;
+   padding: 5px;
+}
+.rowClock>.clock>.analog {
+  flex: 2;
+}
+.clock>.analog{
   width: 100%;
   height: 100%;
   margin: 0 auto;
   position: relative;
   flex: 1;
 }
-
-.time{
-  font-size: 1em;
-}
-.date{
+.rowClock>.clock>.text>.date {
+  margin: 0 auto;
   color: green;
+}
+.rowClock>.clock>.text>.time {
+   margin: 0 auto;
+}
+.container>.clock>.text>.date {
+  font-size: 1em;
+  color: green;
+}
+.container>.clock>.text>.time {
+  margin-top: 0px;
   font-size: 1em;
 }
 @media screen and (min-width: 0px){
-  .time {
+  .container>.clock>.text>.time {
     font-size: 0.6em;
   }
-  .date {
+  .container>.clock>.text>.date {
     font-size: 0.6em;
+    color: green;
   }
 }  
 @media screen and (min-width: 300px){
-  .time {
+  .container>.clock>.text>.time {
     font-size: 0.8em;
   }
-  .date {
+  .container>.clock>.text>.date {
     font-size: 0.8em;
+    color: green;
   }
 }  
 @media screen and (min-width: 800px){
-  .time {
+  .container>.clock>.text>.time {
     font-size: 1.2em;
   }
-  .date {
+  .container>.clock>.text>.date {
     font-size: 1.2em;
+    color: green;
   }
 }  
 @media screen and (min-width: 1200px){
-  .time {
+  .container>.clock>.text>.time {
     font-size: 1.4em;
   }
-  .date {
+  .container>.clock>.text>.date {
     font-size: 1.4em;
+    color: green;
   }
 }  
-
-.slick-prev, .slick-next{
-  position: relative;
-}
-.slick-initialized .slick-slider{
-  max-height: 99vh;
-}
-.slick-list{
-  max-height: 95vh;
-}
-
