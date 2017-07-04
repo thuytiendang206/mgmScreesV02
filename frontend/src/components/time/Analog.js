@@ -1,5 +1,6 @@
 import React from 'react';
 import { drawClock } from './AnalogAction';
+import moment from 'moment-timezone';
 
 class Analog extends React.Component {
     constructor(props) {

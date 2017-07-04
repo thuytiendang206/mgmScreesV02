@@ -3,6 +3,7 @@ import Clock from '../time/Clock';
 import Hello from '../hello/Hello.js';
 import Website from '../website/Website.js';
 import Holiday from '../holiday/Holiday.js';
+import Calendar from '../calendar/Calendar.js';
 import FacebookPage from '../facebookComponent/FacebookPage.js';
 import Danang from '../danang/Danang.js';
 import Hamburg from '../hamburg/Hamburg.js';
@@ -55,10 +56,18 @@ class TogglePages extends React.Component {
             <MultipleScreen
               key={i}
               setting={url[i]["params"]}
-              />);}
-	   else if (url[i]['type'] === Weather.getType()) {
+              />);
+      } else if (url[i]['type'] === Weather.getType()) {
 		  types.push(<Weather key={i} city={url[i]['params']['city']} degrees={url[i]['params']['degrees']}/>);
-	  } else{
+      } else if (url[i]['type'] === Calendar.getType()) {
+		      types.push(
+            <Calendar 
+          key={i}  
+              calendars={url[i]['calendars']} 
+              name={url[i]['name']}
+              />
+          );
+	    } else {
         let str = url[i]['type'];
         for (let j = 0; j < typesContain.length; j++) {
           if (str === typesContain[j].type.getType()) {

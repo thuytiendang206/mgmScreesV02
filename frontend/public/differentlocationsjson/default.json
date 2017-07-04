@@ -459,8 +459,36 @@
       "animation-type": "fade"
     },
     {
-      "type": "Holiday",
-      "animation-type": "slide-right"
+      "type" : "Holiday",
+      "animation-type" : "slide-right"
+    },
+    {   
+      "type": "Calendar",
+      "name": "My Calendar",
+      "animation-type" : "slide-left",
+      "calendars":[
+        {
+          "calendar-id": "wildboar.work@gmail.com",
+          "color":"#9E7BFF"
+        },
+        {
+          "calendar-id": "1te503579dac6q4tcs87i0ej78@group.calendar.google.com",
+          "color":"#ff8847"
+        },
+        {
+          "calendar-id": "fseue5o57ml3hmbk0nbpipufmc@group.calendar.google.com",
+          "color":"#2ecc71"
+        },
+        {
+          "calendar-id": "36u9i6nkfvs896f5dagrr53s40@group.calendar.google.com",
+          "color":"#50EBEC"
+        },
+        {
+          "calendar-id": "hgff4kd43u8t0u0dr3ppucki60@group.calendar.google.com",
+          "color":"#f01111"
+        }
+
+      ]
     }
   ]
 }
