@@ -63,8 +63,7 @@ class TogglePages extends React.Component {
 		      types.push(
             <Calendar 
           key={i}  
-              calendars={url[i]['calendars']} 
-              name={url[i]['name']}
+              params={url[i]["params"]}
               />
           );
 	    } else {

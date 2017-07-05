@@ -7,7 +7,6 @@ class Calendar extends React.Component {
     super(props);
     this.state = {
       events: [],
-      index: 5
     };
   }
 
@@ -50,7 +49,7 @@ class Calendar extends React.Component {
 
   componentWillMount() {
     let events = [];
-    let arr = this.props.calendars;
+    let arr = this.props.params.calendars;
     arr.map((item) =>{
       return axios.get(this.getURl(item['calendar-id']))
       .then(response=>{
@@ -62,7 +61,7 @@ class Calendar extends React.Component {
 
   render() {
     return (
-      <CalendarGUI events={this.state.events} name={this.props.name}></CalendarGUI>
+      <CalendarGUI events={this.state.events} name={this.props.params.name}></CalendarGUI>
     )
 
   }
