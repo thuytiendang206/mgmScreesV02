@@ -1,0 +1,42 @@
+#main {
+   background-color:#e9eaed;
+   font-size: 120%;
+   height: 100vh;
+   text-align: justify;
+}
+
+.navbar-blue {
+	background-color:#3B5999;
+}
+
+.icons {
+  margin: 6px;
+  margin-left: 5%;
+}
+
+.fb-row {
+  margin-top: 1%;
+}
+
+.fb-heading{
+  min-height: 5vh;
+}
+
+.media{
+  text-align: center;
+}
+
+.fb-video{
+  height: 55vh;
+  width: 100%;
+}
+
+.timelinePhoto{
+  height: auto;
+  max-height: 60vh;
+  max-width: 100%;
+  width: auto;
+}
+
+
+

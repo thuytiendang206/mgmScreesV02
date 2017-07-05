@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-export default class Website extends Component {
+class Website extends Component {
   static getType() {
     return "Website";
   }
@@ -11,14 +11,13 @@ export default class Website extends Component {
               title="website"
               src={this.props.url}
               scrolling="no"
-              frameBorder="0"
               style={{
-                border: 0,
-                overflow: 'hidden', width: 100 + '%', height: 99 + 'vh'
+                width: 100 + '%', height: 100 + 'vh'
               }}
-              allowTransparency="true"
             />
         </div>
     )
   }
 }
+
+export default Website;

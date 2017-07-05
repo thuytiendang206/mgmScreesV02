@@ -11,7 +11,7 @@
     "react": "^15.5.4",
     "react-big-calendar": "^0.14.3",
     "react-dom": "^15.5.4",
-    "react-transition-group": "1.x"
+    "react-transition-group": "^1.2.0"
   },
   "devDependencies": {
     "react-scripts": "1.0.7"
