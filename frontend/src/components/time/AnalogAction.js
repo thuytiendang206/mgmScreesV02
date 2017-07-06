@@ -11,7 +11,6 @@ function drawHand(ctx, pos, length, width) {
     ctx.stroke();
     ctx.rotate(-pos);
 }
-
 function drawFace(ctx, radius) {
     var grad;
     ctx.beginPath();
