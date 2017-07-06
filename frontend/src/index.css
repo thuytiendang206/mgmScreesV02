@@ -23,7 +23,7 @@ body {
   flex-direction: column;
   overflow: hidden;
 }
-.container>.clock{
+.animation-container>.clock{
   display: flex;
   flex-direction: column;
   margin: 0 auto;

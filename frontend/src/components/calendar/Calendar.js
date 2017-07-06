@@ -49,7 +49,14 @@ class Calendar extends React.Component {
 
   componentWillMount() {
     let events = [];
-    let arr = this.props.params.calendars;
+    let arr = [];
+    for(let i=1;i<=this.props.params['number-of-calendars'];i++){
+      let obj={
+        'calendar-id':this.props.params['calendar-id-'+i],
+        'color':this.props.params['color-'+i],
+      };
+      arr.push(obj);
+    }
     arr.map((item) =>{
       return axios.get(this.getURl(item['calendar-id']))
       .then(response=>{

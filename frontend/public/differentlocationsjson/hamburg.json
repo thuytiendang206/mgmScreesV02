@@ -1,5 +1,5 @@
 {
-  "name": "Default",
+  "name": "Hamburg",
   "display-time": 10,
   "screens": [
     {
@@ -112,11 +112,9 @@
       "apps": [
         {
           "type": "Website",
-          "params": [
-            {
-              "url": "https://www.mgmtp.com"
-            }
-          ]
+          "params": {
+            "url": "https://www.mgmtp.com"
+          }
         }
       ]
     },
@@ -128,11 +126,9 @@
       "apps": [
         {
           "type": "Facebook",
-          "params": [
-            {
-              "url": "mgmTechnologyPartners/"
-            }
-          ]
+          "params": {
+            "url": "mgmTechnologyPartners"
+          }
         }
       ]
     },
@@ -144,7 +140,7 @@
       "apps": [
         {
           "type": "Holiday",
-          "params": []
+          "params": {}
         }
       ]
     },

@@ -1,12 +1,9 @@
 import React from 'react';
 
 class Hello extends React.Component {
-    static getType() {
-        return "Hello";
-    }
     render() {
         return (
-            <h1 className="title">Hello MGM</h1>
+            <h1 className="title">Hello mgm</h1>
         );
     }
 };

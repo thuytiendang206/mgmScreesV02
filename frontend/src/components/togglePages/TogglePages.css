@@ -51,10 +51,8 @@
   transition: opacity 1s;
 }
 
-.container > * {
+.animation-container > * {
   position: fixed;
-  top: 0;
   width: 100%;
-  z-index: -1000;
   left: 0px;
 }

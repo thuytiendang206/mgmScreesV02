@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import FacebookItem from './FacebookItem';
 import axios from 'axios';
 import './Facebook.css';
@@ -6,13 +6,9 @@ import './Facebook.css';
 class FacebookPage extends Component {
   constructor(props) {
     super(props);
-    this.state = ({ 
+    this.state = ({
       data: []
     });
-  }
-
-  static getType() {
-    return "Facebook";
   }
 
   componentWillMount() {
@@ -39,9 +35,9 @@ class FacebookPage extends Component {
 
   render() {
     return (
-      <div id="main"> 
-        <div className="navbar-blue navbar-static-top">  
-          <img src="images/fb-logo.png" className="icons" alt=""/>
+      <div id="main">
+        <div className="navbar-blue navbar-static-top">
+          <img src="images/fb-logo.png" className="icons" alt="" />
         </div>
         <div className="container-fluid" >   
           <div className="fb-row">
@@ -51,7 +47,7 @@ class FacebookPage extends Component {
               </div>        
             </div>
               {this.loadFacebookPost()}
-            </div>
+          </div>
         </div>
       </div>
     );

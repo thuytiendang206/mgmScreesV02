@@ -8,10 +8,6 @@ class Hamburg extends Component {
         }
     }  
 
-    static getType() {
-        return "Hamburg";
-    }
-
     render() {
         return (
             <div  className="hamburg">

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import Clock from '../time/Clock.js';
-import Weather from '../weather/Weather';
-
+import {View} from './getScreens.js'
 class MultipleScreen extends Component {
 
     constructor(props) {
@@ -10,10 +8,6 @@ class MultipleScreen extends Component {
             isChanged: true
         };
         this.resize = this.resize.bind(this);
-    }
-
-    static getType() {
-        return "Grid-layout";
     }
 
     resize() {
@@ -37,39 +31,10 @@ class MultipleScreen extends Component {
         window.removeEventListener("resize", this.resize);
     }
 
-    getElements() {
-        let setting = this.props.setting["content"];
-        var cols = this.props.setting["columns"];
-        var rows = this.props.setting["rows"];
-        let rowList = [];
-        let count = 0;
-        for (let i = 0; i < rows; i++) {
-            rowList.push([]);
-        }
-        for (let i = 0; i < rows; i++) {
-            for (let j = 0; j < cols; j++) {
-                if (setting[count]['type'] === Clock.getType()) {
-                    rowList[i].push(
-                        <Clock key={count} widthSize={this.state.width / cols} heightSize={this.state.height / rows} isChanged={this.state.isChanged} utcDiff={setting[count]['params']['utc-diff']}
-                            city={setting[count]['params']['city']} />
-                    );
-                } else if (setting[count]['type'] === Weather.getType()) {
-                    rowList[i].push(
-                        <Weather height={this.state.height / rows} width={this.state.width / cols} key={count} city={setting[count]['params']['city']}
-                            degrees={setting[count]['params']['degrees']} />
-                    );
-                }
-                count++;
-            }
-        }
-        return rowList;
-    }
-
     render() {
-        var elements = this.getElements();
         return (
             <div className="cell">
-                {elements.map((element, index) => <div key={index} className="rowClock">{element}</div>)}
+                {View(this.props.cols, this.props.rows, this.props.apps, this.state)}
             </div>
         );
     };

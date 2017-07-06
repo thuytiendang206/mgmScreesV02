@@ -12,15 +12,12 @@ class Clock extends React.Component {
             date: 0,
         });
     }
-    static getType() {
-        return "Clock";
-    }
     incrementCounter() {
         var formatT = 'HH:mm:ss A';
         var formatD = 'ddd D MMM Y';
         this.setState({
-            time: moment().utcOffset(this.props.utcDiff * 60).format(formatT),
-            date: moment().utcOffset(this.props.utcDiff * 60).format(formatD)
+            time: moment().utcOffset(this.props.params.utcDiff * 60).format(formatT),
+            date: moment().utcOffset(this.props.params.utcDiff * 60).format(formatD)
         });
     }
 
@@ -35,11 +32,11 @@ class Clock extends React.Component {
         const styles = this.props.widthSize > this.props.heightSize ? getHorizontalLayoutStyle(this.props.widthSize, this.props.heightSize) : getVerticalLayoutStyle(this.props.widthSize, this.props.heightSize);
         return (
             <div className="clock" style={styles.clock}>
-                <Analog analogStyle={styles.analog} utcDiff={this.props.utcDiff} city={this.props.city} isChanged={this.props.isChanged} />
+                <Analog analogStyle={styles.analog} utcDiff={this.props.params.utcDiff} city={this.props.params.city} isChanged={this.props.isChanged} />
                 <div style={styles.text}>
                     <h2 style={styles.time}>{this.state.time}</h2>
                     <h2 style={styles.date}>{this.state.date}</h2>
-                    <h2 style={styles.date}>{this.props.city}</h2>
+                    <h2 style={styles.date}>{this.props.params.city}</h2>
                 </div>
             </div>
         );

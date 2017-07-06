@@ -1,5 +1,5 @@
 {
-  "name": "Default",
+  "name": "DaNang",
   "display-time": 10,
   "screens": [
     {
@@ -127,7 +127,7 @@
         {
           "type": "Facebook",
           "params": {
-            "url": "mgmTechnologyPartnersVietnam/"
+            "url": "mgmTechnologyPartnersVietnam"
           }
         }
       ]

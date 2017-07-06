@@ -8,10 +8,6 @@ class Danang extends Component {
         }
     }  
 
-    static getType() {
-        return "Danang";
-    }
-
     render() {
         return (
             <div  className="danang">

@@ -23,12 +23,12 @@
   to { transform: rotate(360deg); }
 }
 .title {
+    flex: 1;
     color: #5e5e79;
     padding: 0;
     font-size: 70px;
     font-family: serif;
     margin: 20%;
-    margin-left: 0px;
     text-shadow: 3px 2px 2px;
 }
 

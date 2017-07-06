@@ -23,10 +23,6 @@ class Holiday extends Component {
     
   }
 
-  static getType() {
-    return "Holiday";
-  }
-
   render() {
     return (
       <div className="holiday-Bg">

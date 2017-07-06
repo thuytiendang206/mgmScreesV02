@@ -21,10 +21,6 @@ class Weather extends React.Component {
         this.state = { wind: {} }
     }
 
-    static getType() {
-        return "Weather";
-    }
-
     getWeather(props) {
         let url = rootUrl + props.city + apiUrl;
         axios.get(url)
@@ -46,14 +42,14 @@ class Weather extends React.Component {
         const backgroundColorClass = "weather-widget " + getBackgroundColor(this.state.temp);
         const windIcon = "wi wi-wind " + this.state.wind.iconDeg;
         const tempShow = this.state.temp
-            ? this.props.degrees === "F"
+            ? this.props.params.degrees === "F"
                 ? convertCtoF(this.state.temp)
                 : this.state.temp
             : undefined;
-        const styles = this.props.width > this.props.height ? getStyles(this.props.height) : getStyles(this.props.width);
+        const styles = this.props.widthSize > this.props.heightSize ? getStyles(this.props.heightSize) : getStyles(this.props.widthSize);
         return (
             <div className={backgroundColorClass}>
-                <h1 className="city" style={styles.city}>{this.props.city}</h1>
+                <h1 className="city" style={styles.city}>{this.props.params.city}</h1>
                 <div className='weather' style={styles.weather}>
                     <i className={weatherClass} style={styles.wi}></i>
                 </div>
@@ -61,7 +57,7 @@ class Weather extends React.Component {
                     <div className="left-side">
                         <div className="temp" style={styles.temp}>
                             <p className="temp-number">{tempShow}
-                                <span className="wi wi-degrees"></span>{this.props.degrees}
+                                <span className="wi wi-degrees"></span>{this.props.params.degrees}
                             </p>
                         </div>
                     </div>
@@ -82,11 +78,11 @@ class Weather extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.getWeather(nextProps);
+        this.getWeather(nextProps.params);
     }
 
     componentDidMount() {
-        this.getWeather(this.props);
+        this.getWeather(this.props.params);
     }
 }
 export default Weather;
