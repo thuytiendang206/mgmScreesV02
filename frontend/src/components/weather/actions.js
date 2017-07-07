@@ -57,3 +57,34 @@ export function getBackgroundColor(temp){
 export function convertCtoF(temp){
     return Math.round( (9/5)*temp +32 );
 }
+
+export function getStyles(avg) {
+  let styles = {
+    city: {
+      fontSize: `${avg / 7}px`
+    },
+    weather: {
+      paddingBottom: `${avg / 15}px`,
+      marginBottom: `${avg / 50}px`
+    },
+    wi: {
+      fontSize: `${avg / 4}px`
+    },
+    weatherDetail: {
+      paddingTop: `${avg / 20}px`,
+    },
+    temp: {
+      fontSize: `${avg / 7}px`,
+    },
+    humidity: {
+      fontSize: `${avg / 8}px`,
+    },
+    wind: {
+      fontSize: `${avg / 8}px`,
+    },
+    tempNumber: {
+      paddingRight: `${avg / 15}px`,
+    }
+  };
+  return styles;
+}

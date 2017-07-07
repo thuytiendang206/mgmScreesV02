@@ -9,7 +9,7 @@ import './font/weathericons-regular-webfont.svg';
 import './font/weathericons-regular-webfont.ttf';
 import './font/weathericons-regular-webfont.woff';
 import './font/weathericons-regular-webfont.woff2';
-import {getWindDegIcon,getBackgroundColor,convertCtoF} from './actions';
+import { getWindDegIcon, getBackgroundColor, convertCtoF, getStyles } from './actions';
 import axios from 'axios';
 
 const rootUrl = 'http://api.openweathermap.org/data/2.5/weather?q=';
@@ -34,7 +34,7 @@ class Weather extends React.Component {
                     humidity: res.data.main.humidity,
                     wind: {
                         speed: res.data.wind.speed,
-                        iconDeg : getWindDegIcon(res.data.wind.deg)
+                        iconDeg: getWindDegIcon(res.data.wind.deg)
                     },
                     icon: res.data.weather[0].id,
                 });
@@ -46,39 +46,42 @@ class Weather extends React.Component {
         const backgroundColorClass = "weather-widget " + getBackgroundColor(this.state.temp);
         const windIcon = "wi wi-wind " + this.state.wind.iconDeg;
         const tempShow = this.state.temp
-              ? this.props.degrees === "F"
+            ? this.props.degrees === "F"
                 ? convertCtoF(this.state.temp)
                 : this.state.temp
-              : undefined;
+            : undefined;
+        const styles = this.props.width > this.props.height ? getStyles(this.props.height) : getStyles(this.props.width);
         return (
-            <div className="wrapper">
-                <div className={backgroundColorClass}>
-                    <h1 className="city">{this.props.city}</h1>
-                    <div className="weather">
-                        <i className={weatherClass}></i>
-                    </div>
-                    <section className="weather-details">
-                        <div className="temp">
-                            <p><span className="temp-number">{tempShow}</span>
-                               <span className="wi wi-degrees"></span>
-                               <span className="degrees">{this.props.degrees}</span>
+            <div className={backgroundColorClass}>
+                <h1 className="city" style={styles.city}>{this.props.city}</h1>
+                <div className='weather' style={styles.weather}>
+                    <i className={weatherClass} style={styles.wi}></i>
+                </div>
+                <div className="weather-details" style={styles.weatherDetail}>
+                    <div className="left-side">
+                        <div className="temp" style={styles.temp}>
+                            <p className="temp-number">{tempShow}
+                                <span className="wi wi-degrees"></span>{this.props.degrees}
                             </p>
                         </div>
-                        <div className="space"></div>
-                        <div className="wind-humidity">
-                            <div className="humidity"><i className="wi wi-raindrop"></i><p>{this.state.humidity}%</p></div>
-                            <div className="wind">
-                                <i className={windIcon}></i>
-                                <p>{this.state.wind.speed}<span className="vel">m/s</span></p>
-                            </div>
+                    </div>
+                    <div className="right-side">
+                        <div className="humidity" style={styles.humidity}>
+                            <i className="wi wi-raindrop"></i><p>{this.state.humidity} <span>%</span></p>
                         </div>
-                    </section>
+                        <div className="wind" style={styles.wind}>
+                            <i className={windIcon}></i>
+                            <p>{this.state.wind.speed}
+                                <span className="vel"> m/s</span>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         )
     }
 
-    componentWillReceiveProps(nextProps){
+    componentWillReceiveProps(nextProps) {
         this.getWeather(nextProps);
     }
 

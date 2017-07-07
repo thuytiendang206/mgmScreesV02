@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Clock from '../time/Clock.js';
+import Weather from '../weather/Weather';
 
 class MultipleScreen extends Component {
 
@@ -51,6 +52,11 @@ class MultipleScreen extends Component {
                     rowList[i].push(
                         <Clock key={count} widthSize={this.state.width / cols} heightSize={this.state.height / rows} isChanged={this.state.isChanged} utcDiff={setting[count]['params']['utc-diff']}
                             city={setting[count]['params']['city']} />
+                    );
+                } else if (setting[count]['type'] === Weather.getType()) {
+                    rowList[i].push(
+                        <Weather height={this.state.height / rows} width={this.state.width / cols} key={count} city={setting[count]['params']['city']}
+                            degrees={setting[count]['params']['degrees']} />
                     );
                 }
                 count++;

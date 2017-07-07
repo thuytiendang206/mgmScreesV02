@@ -47,6 +47,48 @@
       "type": "Grid-layout",
       "animation-type": "fade",
       "params": {
+        "rows": 2,
+        "columns": 2,
+        "content": [
+          {
+            "type": "Weather",
+            "animation-type" : "fade",
+            "params":
+            {
+              "city": "Da Nang",
+              "degrees" :"C"
+            }
+          },
+          {
+            "type": "Clock",
+            "params": {
+              "utc-diff": 2,
+              "city": "Hamburg, Germany"
+            }
+          },
+          {
+            "type": "Clock",
+            "params": {
+              "utc-diff": 7,
+              "city": "Da Nang, VietNam"
+            }
+          },
+          {
+            "type": "Weather",
+            "animation-type" : "fade",
+            "params":
+            {
+              "city": "Hamburg",
+              "degrees" :"C"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "Grid-layout",
+      "animation-type": "fade",
+      "params": {
         "rows": 1,
         "columns": 1,
         "content": [  
