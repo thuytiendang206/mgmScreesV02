@@ -2,6 +2,14 @@
     min-height: 21px;
 }
 .calendar-content{
-    right: 0px;
-    height: 98vh;
+    width: 100%;
+}
+.rbc-event-label{
+    display: none;
+}
+.calendar-name{
+    height: 1vh;
+}
+.rbc-calendar{
+    height: 96.5vh;
 }
