@@ -1,7 +1,8 @@
 import React from 'react';
 import Analog from './Analog'
 import moment from 'moment-timezone';
-import { getHorizontalLayoutStyle, getVerticalLayoutStyle } from './ClockStyle';
+import { getHorizontalLayoutStyle, getVerticalLayoutStyle, getBackGroundColor } from './ClockStyle';
+import './clock.css';
 
 class Clock extends React.Component {
 
@@ -16,8 +17,9 @@ class Clock extends React.Component {
         var formatT = 'HH:mm:ss A';
         var formatD = 'ddd D MMM Y';
         this.setState({
-            time: moment().utcOffset(this.props.params.utcDiff * 60).format(formatT),
-            date: moment().utcOffset(this.props.params.utcDiff * 60).format(formatD)
+            time: moment().utcOffset(this.props.params['utc-diff'] * 60).format(formatT),
+            date: moment().utcOffset(this.props.params['utc-diff'] * 60).format(formatD),
+            backgroundColor: getBackGroundColor(moment().utcOffset(this.props.params['utc-diff'] * 60).format("HH"))
         });
     }
 
@@ -30,9 +32,10 @@ class Clock extends React.Component {
 
     render() {
         const styles = this.props.widthSize > this.props.heightSize ? getHorizontalLayoutStyle(this.props.widthSize, this.props.heightSize) : getVerticalLayoutStyle(this.props.widthSize, this.props.heightSize);
+        const ClassClockCss = "clock " + this.state.backgroundColor;
         return (
-            <div className="clock" style={styles.clock}>
-                <Analog analogStyle={styles.analog} utcDiff={this.props.params.utcDiff} city={this.props.params.city} isChanged={this.props.isChanged} />
+            <div className={ClassClockCss} style={styles.clock}>
+                <Analog analogStyle={styles.analog} utcDiff={this.props.params['utc-diff']} city={this.props.params.city} isChanged={this.props.isChanged} />
                 <div style={styles.text}>
                     <h2 style={styles.time}>{this.state.time}</h2>
                     <h2 style={styles.date}>{this.state.date}</h2>
