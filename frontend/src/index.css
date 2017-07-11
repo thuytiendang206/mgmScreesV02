@@ -11,9 +11,17 @@ body {
   position: relative;
   width: 100%;
 }
+.row-2 {
+  height: 50%;
+}
+.row-3 {
+  height: calc(100%/3);
+}
+.row-4 {
+  height: 25%;
+}
 .rowClock {
   display: flex;
-  flex: 1;
   flex-direction: row;
 }
 .cell {

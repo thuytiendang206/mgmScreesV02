@@ -62,6 +62,7 @@ export function View(cols, rows, apps, currentState) {
     state = currentState;
     if (!isGridLayout()) { return getElement(apps[0]) }
     else {
-        return getElements(apps).map((element, index) => <div key={index} className="rowClock">{element}</div>)
+        let combineClassName = 'rowClock row-'+row;
+        return getElements(apps).map((element, index) => <div key={index} className={combineClassName}>{element}</div>)
     }
 }
