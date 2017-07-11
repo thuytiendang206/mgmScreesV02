@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-export default class FacebookItem extends Component {
-  renderMedia() {
+
+class FacebookItem extends Component {
+  loadMediaItem() {
     return this.props.item.type === "video"
       ? <iframe
         title="fb-video"
+        className="fb-video"
         src={this.props.item.source}
-        frameBorder="0"
-        style={{ width: 100 + '%', height: 55 + 'vh' }}
       />
       : <img
         className="timelinePhoto"
@@ -19,17 +19,17 @@ export default class FacebookItem extends Component {
     return(
       <div className="col-sm-5">
         <div className="panel panel-default">
-          <div className="panel-heading">
-            <p> 
+          <div className="fb-heading panel-heading">
+            <div> 
               {this.props.item.name} 
               <p className="pull-right">{this.props.item.created_time.substring(0, 10)}</p>
-            </p>
+            </div>
           </div>
           <div className="panel-body">
             <p>{this.props.item.message}</p>
             <p>{this.props.item.description}</p>
             <div className="media">
-              {this.renderMedia()} 
+              {this.loadMediaItem()} 
             </div>
           </div>
         </div>
@@ -37,3 +37,5 @@ export default class FacebookItem extends Component {
     );
   }
 }
+
+export default FacebookItem;
