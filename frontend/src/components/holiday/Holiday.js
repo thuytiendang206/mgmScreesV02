@@ -1,26 +1,32 @@
 import React, { Component } from 'react';
-import { getHolidayAtCurrentDate, getUpCommingHoliday } from './action';
-
+import { getHolidayAtCurrentDate, getUpComingHoliday, initHolidayData } from './action';
 import TodayItem from './TodayItem.js';
-import UpCommingItem from './UpCommingItem.js';
+import UpComingItem from './UpComingItem.js';
 import './holiday.css';
 
-let offices = require('../../static/resources/file/config/offices.json');
 
 class Holiday extends Component {
 
+  holiday = {
+    today: [],
+    upcoming: []
+  };
    
   constructor(){
     super();
-
     //var currentDate = new Date("Dec 26 2017 06:00:00 GMT+0700"); //just use to demo
     var currentDate = new Date();
     this.state = {
-      currentDate: currentDate,
-      today: getHolidayAtCurrentDate(offices, currentDate),
-      upcomming:  getUpCommingHoliday(offices, currentDate)
+      currentDate: currentDate
     }; 
-    
+    initHolidayData(this.state.currentDate);
+  }
+
+  componentWillMount(){
+    this.holiday = {
+      today: getHolidayAtCurrentDate(this.state.currentDate),
+      upcoming:  getUpComingHoliday(this.state.currentDate)
+    }
   }
 
   render() {
@@ -34,17 +40,17 @@ class Holiday extends Component {
                 <div className="panel-heading"><h3>Today Holiday - {this.state.currentDate.toDateString()}</h3></div>
                 <div className="panel-body">
                   <div className="row">
-                    {this.state.today.map((element, index) => <TodayItem key={index} today={element}/>)}
+                    {this.holiday.today.map((element, index) => <TodayItem key={index} today={element}/>)}
                   </div>
                 </div>
               </div>
             </div>
             <div className="col-md-6">
               <div className="panel panel-info">
-                <div className="panel-heading"><h3>Up Comming - 2 Weeks</h3></div>
+                <div className="panel-heading"><h3>Up Coming - 2 Weeks</h3></div>
                 <div className="panel-body">
                   <div className="row">
-                    {this.state.upcomming.map((element, index) => <UpCommingItem key={index} upcomming={element}/>)}
+                    {this.holiday.upcoming.map((element, index) => <UpComingItem key={index} upcoming={element}/>)}
                   </div>
                 </div>
               </div>

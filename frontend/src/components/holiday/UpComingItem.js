@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 let offices = require('../../static/resources/file/config/offices.json');
 
-class UpCommingItem extends Component {
+class UpComingItem extends Component {
 		
-	handleUpCommingHoliday(){
+	handleUpComingHoliday(){
 		var row = [];
 		var listNameHoliday = [];
-		var holidayUpComming = this.props.upcomming.holidayUpComming;
-		for(var i=0; i<holidayUpComming.length; i++){
-			if(holidayUpComming[i]){
-				var index = listNameHoliday.indexOf(holidayUpComming[i].name);
+		var holidayUpComing = this.props.upcoming.holidayUpComing;
+		for(var i=0; i<holidayUpComing.length; i++){
+			if(holidayUpComing[i]){
+				var index = listNameHoliday.indexOf(holidayUpComing[i].name);
 				if(index === -1){
-					listNameHoliday.push(holidayUpComming[i].name);
+					listNameHoliday.push(holidayUpComing[i].name);
 					var holiday = {
-						name: holidayUpComming[i].name,
+						name: holidayUpComing[i].name,
 						offices: []
 					}
 					holiday.offices.push(" "+offices[i].cityName);
@@ -38,8 +38,8 @@ class UpCommingItem extends Component {
 	}
 
 	render(){
-		let date = new Date(this.props.upcomming.date);
-		let row = this.handleUpCommingHoliday();
+		let date = new Date(this.props.upcoming.date);
+		let row = this.handleUpComingHoliday();
 		return(
 			<div className="col-md-12">
 				<div className="row eachItem">
@@ -57,4 +57,4 @@ class UpCommingItem extends Component {
 	}
 }
 
-export default UpCommingItem;
+export default UpComingItem;

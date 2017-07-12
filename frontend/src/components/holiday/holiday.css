@@ -1,6 +1,9 @@
 .holiday-Bg{
-	background-image: url("../../static/resources/image/holiday_bg.jpg");
-	background-position: center center;
+  background: url("../../static/resources/image/holiday_bg.jpg")  no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 	height: 100vh;
 }
 
@@ -45,8 +48,8 @@
 }
 
 .eachItem{
-    min-height: 20px;
-    margin-bottom: 10px;
+    min-height: 30px;
+    margin-bottom: 2px;
     background-color: lightgrey;
     font-size: 13px;
 
@@ -57,22 +60,22 @@
 }
 
 img.logoOffices{
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   display: inline-flex !important;
 }
 
 img.square{
   visibility: hidden;
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   display: inline-flex !important;
 }
 
 img.squareNoWidth{
   visibility: hidden;
   width: 1px;
-  height: 20px;
+  height: 30px;
   display: inline-flex !important;
 }
 
@@ -83,26 +86,26 @@ img.squareNoWidth{
 
 @media screen and (min-width: 1920px ){
   .eachItem{
-    min-height: 50px;
-    margin-bottom: 10px;
+    min-height: 55px;
+    margin-bottom: 2px;
     background-color: lightgrey;
     font-size: 20px;
   }
 
   img.logoOffices{
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
   }
   
   img.square{
     visibility: hidden;
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
   }
 
   img.squareNoWidth{
     visibility: hidden;
     width: 1px;
-    height: 50px;
+    height: 55px;
   }
 }
