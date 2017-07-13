@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { getHolidayAtCurrentDate, getUpComingHoliday, initHolidayData } from './action';
-import TodayItem from './TodayItem.js';
-import UpComingItem from './UpComingItem.js';
+import TodayItem from './TodayItem';
+import UpComingItem from './UpComingItem';
 import './holiday.css';
 
 
@@ -11,18 +11,18 @@ class Holiday extends Component {
     today: [],
     upcoming: []
   };
-   
+
   constructor(){
     super();
     //var currentDate = new Date("Dec 26 2017 06:00:00 GMT+0700"); //just use to demo
     var currentDate = new Date();
     this.state = {
       currentDate: currentDate
-    }; 
-    initHolidayData(this.state.currentDate);
+    };
   }
 
   componentWillMount(){
+    initHolidayData(this.state.currentDate);
     this.holiday = {
       today: getHolidayAtCurrentDate(this.state.currentDate),
       upcoming:  getUpComingHoliday(this.state.currentDate)
@@ -57,7 +57,7 @@ class Holiday extends Component {
             </div>
           </div>
         </div>
-      </div> 
+      </div>
     );
   }
 }

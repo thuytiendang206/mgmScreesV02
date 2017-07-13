@@ -1,19 +1,18 @@
 
 var Holidays = require('date-holidays');
-var hd = new Holidays();
 
 let offices = require('../../static/resources/file/config/offices.json');
-let holidayData = []
-let size = offices.length;
+let holidayData = [];
+const size = offices.length;
 
-export function initHolidayData(currentDate){
-	holidayData = [];
-	let year = currentDate.getFullYear();
-	for(let i=0; i<size; i++){
-		var holiday = new Holidays(offices[i].countryCode, offices[i].cityCode);
-		holiday.setLanguages("en");
-		holidayData.push(holiday.getHolidays(year));
+function upComingItemConvertRowToString(row){
+	var rowContent = "";
+	for(var i=0; i<row.length; i++){
+		rowContent += (row[i].name +"(");
+		rowContent += row[i].offices.join();
+		rowContent += " )";
 	}
+	return rowContent;
 }
 
 function inRange(date, start, end) {
@@ -22,10 +21,7 @@ function inRange(date, start, end) {
 		start.setFullYear(currentYear);
 		end.setFullYear(currentYear);
 	}
-    if(start <= date && date <= end){
-    	return true;
-    }
-    return false;
+    return (start <= date && date <= end);
 }
 
 function isHoliday(position, date, type){
@@ -36,6 +32,16 @@ function isHoliday(position, date, type){
 		}
 	}
 	return false;
+}
+
+export function initHolidayData(currentDate){
+	holidayData = [];
+	let year = currentDate.getFullYear();
+	for(let i=0; i<size; i++){
+		var holiday = new Holidays(offices[i].countryCode, offices[i].cityCode);
+		holiday.setLanguages("en");
+		holidayData.push(holiday.getHolidays(year));
+	}
 }
 
 export function getHolidayAtCurrentDate(currentDate){
@@ -65,5 +71,26 @@ export function getUpComingHoliday(currentDate){
 		results.push(obj);
 	}
 	return results;
-	
+}
+
+export function handleUpComingHoliday(holidayUpComing){
+	let row = [];
+	let listNameHoliday = [];
+	for(let i=0; i<holidayUpComing.length; i++){
+		if(holidayUpComing[i]){
+			let index = listNameHoliday.indexOf(holidayUpComing[i].name);
+			if(index === -1){
+				listNameHoliday.push(holidayUpComing[i].name);
+				let holiday = {
+					name: holidayUpComing[i].name,
+					offices: []
+				}
+				holiday.offices.push(" "+offices[i].cityName);
+				row.push(holiday);
+			}else{
+				row[index].offices.push(" "+offices[i].cityName)
+			}
+		}
+	}
+	return upComingItemConvertRowToString(row);
 }
