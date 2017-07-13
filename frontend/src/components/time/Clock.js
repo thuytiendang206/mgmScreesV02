@@ -9,8 +9,8 @@ class Clock extends React.Component {
     constructor(props) {
         super(props);
         this.state = ({
-            time: 0,
-            date: 0,
+            time: moment().utcOffset(this.props.params['utc-diff'] * 60).format('HH:mm:ss A'),
+            date: moment().utcOffset(this.props.params['utc-diff'] * 60).format('ddd D MMM Y'),
         });
     }
     incrementCounter() {
@@ -18,8 +18,7 @@ class Clock extends React.Component {
         var formatD = 'ddd D MMM Y';
         this.setState({
             time: moment().utcOffset(this.props.params['utc-diff'] * 60).format(formatT),
-            date: moment().utcOffset(this.props.params['utc-diff'] * 60).format(formatD),
-            backgroundColor: getBackGroundColor(moment().utcOffset(this.props.params['utc-diff'] * 60).format("HH"))
+            date: moment().utcOffset(this.props.params['utc-diff'] * 60).format(formatD)
         });
     }
 
@@ -32,7 +31,8 @@ class Clock extends React.Component {
 
     render() {
         const styles = this.props.widthSize > this.props.heightSize ? getHorizontalLayoutStyle(this.props.widthSize, this.props.heightSize) : getVerticalLayoutStyle(this.props.widthSize, this.props.heightSize);
-        const ClassClockCss = "clock " + this.state.backgroundColor;
+        const ClassClockCss = "clock " + getBackGroundColor(moment().utcOffset(this.props.params['utc-diff'] * 60).format("HH"));
+
         return (
             <div className={ClassClockCss} style={styles.clock}>
                 <Analog analogStyle={styles.analog} utcDiff={this.props.params['utc-diff']} city={this.props.params.city} isChanged={this.props.isChanged} />

@@ -12,9 +12,9 @@ class Analog extends React.Component {
     }
 
     componentDidMount() {
-        var tmpradius;
-        var canvas = this.refs.mycanvas;
-        var container = this.refs.container;
+        let tmpradius;
+        let canvas = this.refs.mycanvas;
+        let container = this.refs.container;
         canvas.height = container.clientWidth < container.clientHeight ? container.clientWidth : container.clientHeight;
         canvas.width = canvas.height;
         this.setState(
@@ -26,7 +26,8 @@ class Analog extends React.Component {
             () => {
                 tmpradius = this.state.radius / 0.9;
                 this.state.ctx.translate(tmpradius, tmpradius);
-                setInterval(() => {
+                drawClock(this.state.ctx, this.state.radius, this.props.utcDiff);
+                this.interval = setInterval(() => {
                     drawClock(this.state.ctx, this.state.radius, this.props.utcDiff)
                 }, 1000);
             }
@@ -35,9 +36,9 @@ class Analog extends React.Component {
 
     componentWillReceiveProps() {
         if (this.props.isChanged !== this.state.isChanged) {
-            var tmpradius;
-            var canvas = this.refs.mycanvas;
-            var container = this.refs.container;
+            let tmpradius;
+            let canvas = this.refs.mycanvas;
+            let container = this.refs.container;
             canvas.height = container.clientWidth < container.clientHeight ? container.clientWidth : container.clientHeight;
             canvas.width = canvas.height;
             this.setState(
@@ -49,16 +50,13 @@ class Analog extends React.Component {
                 () => {
                     tmpradius = this.state.radius / 0.9;
                     this.state.ctx.translate(tmpradius, tmpradius);
-                    setInterval(() => {
-                        drawClock(this.state.ctx, this.state.radius, this.props.utcDiff)
-                    }, 1000);
                 }
             );
         }
     }
 
     componentWillUnmount() {
-        clearInterval();
+        clearInterval(this.interval);
     }
 
     render() {
