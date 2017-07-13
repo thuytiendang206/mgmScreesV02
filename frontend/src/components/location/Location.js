@@ -4,6 +4,9 @@ import Error from '../error404/Error';
 import axios from 'axios';
 
 class Location extends Component {
+
+  DataUrl = process.env.REACT_APP_BACKEND_URL + "api/screenplay/";
+
   constructor(props) {
     super(props);
     this.state = {
@@ -25,14 +28,14 @@ class Location extends Component {
       }, () => { this.setState({ errorOccured: true }); })
   }
 
-  getUrl() {
-    const defaultScreen = './differentlocationsjson/default.json';
+  geturl() {
+    const defaultScreen = this.DataUrl + 'default';
     const url = window.location.href;
     const substring = "screenplay=";
     if (url.indexOf(substring) == -1) return defaultScreen;
     else {
       var params = this.getQueryVariable("screenplay");
-      params = './differentlocationsjson/' + params + '.json';
+      params = this.DataUrl + params;
       return params;
     }
   }

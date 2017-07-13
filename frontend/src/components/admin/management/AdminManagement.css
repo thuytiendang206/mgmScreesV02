@@ -1,0 +1,62 @@
+/* latin */
+@font-face {
+  font-family: 'Bangers';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Bangers Regular'), local('Bangers-Regular'), url("../../../static/resources/file/fonts/bangers.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+.screenplay-title{
+	color: #73ef88;
+	font-family: 'Bangers', cursive;
+	font-size: 8em;
+	font-weight: normal;
+	text-align: center;
+	text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.7);
+	text-transform: uppercase;
+	transition-duration: 0.5s;
+	white-space: nowrap;
+	z-index: 1000;
+	-moz-transform: skew(0, 0);
+	-ms-transform: skew(0, 0);
+	-webkit-transform: skew(0, 0);
+	transform: skew(0, 0);
+	-moz-transition-property: font-size;
+	-o-transition-property: font-size;
+	-webkit-transition-property: font-size;
+	transition-property: font-size;
+	-moz-transition-duration: 0.5s;
+	-o-transition-duration: 0.5s;
+	-webkit-transition-duration: 0.5s;
+}
+
+span.icon-action-size i{
+	cursor: pointer;
+	font-size: 2em;
+}
+
+.full-screen{
+	width: 100%;
+	padding: 15px
+}
+
+.tags{
+	margin-bottom: 10px;
+}
+
+.tags span{
+	cursor: pointer;
+	display: inline-block;
+	font-size: smaller;
+	margin-right: 5px;
+	padding: 0 8px;
+}
+.tags button{
+	border:  none;
+	margin-left: 10px;
+	padding: 0;
+}
+.pointer{
+	cursor: pointer;
+}
