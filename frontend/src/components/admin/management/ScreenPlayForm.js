@@ -111,11 +111,6 @@ class ScreenPlayForm extends Component{
 		return(
 			<div className="full-screen">
 				<div className="row">
-					<div className="col-md-12 text-center">
-						<h1>Add New ScreenPlay </h1>
-					</div>
-				</div>
-				<div className="row">
 					<div className="col-md-4">
 						<div className="panel panel-primary">
 							<div className="panel-heading">

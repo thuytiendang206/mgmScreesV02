@@ -28,7 +28,8 @@ class Location extends Component {
       }, () => { this.setState({ errorOccured: true }); })
   }
 
-  geturl() {
+  getUrl() {
+    console.log(this.DataUrl);
     const defaultScreen = this.DataUrl + 'default';
     const url = window.location.href;
     const substring = "screenplay=";
