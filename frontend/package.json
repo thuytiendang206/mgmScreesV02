@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "sh -ac '. ./ .env.${REACT_APP_ENV}; react-scripts build'",
+    "build": "sh -ac '. ./.env.${REACT_APP_ENV}; react-scripts build'",
     "build:local": "sh -ac 'export REACT_APP_ENV=local && npm run build'",
     "build:dev": "sh -ac 'export REACT_APP_ENV=dev && npm run build'",
     "build:prod": "sh -ac 'export REACT_APP_ENV=prod && npm run build'",
