@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {View} from './getScreens.js'
+import { View } from './getScreens'
+
 class MultipleScreen extends Component {
 
     constructor(props) {
@@ -39,4 +40,5 @@ class MultipleScreen extends Component {
         );
     };
 }
+
 export default MultipleScreen;

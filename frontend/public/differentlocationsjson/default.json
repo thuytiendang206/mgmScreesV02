@@ -146,7 +146,7 @@
     },
     {
       "type": "Grid-layout",
-      "animation-type": "slide-right",
+      "animation-type": "fade",
       "rows": 1,
       "cols": 1,
       "apps": [

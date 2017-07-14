@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import TogglePages from '../togglePages/TogglePages.js';
+import TogglePages from '../togglePages/TogglePages';
 import Error from '../error404/Error';
 import axios from 'axios';
+
 class Location extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +12,7 @@ class Location extends Component {
   }
 
   fetchData() {
-    axios.get(this.geturl())
+    axios.get(this.getUrl())
       .then(res => {
         if (typeof (res.data) === "object") {
           this.setState({
@@ -24,7 +25,7 @@ class Location extends Component {
       }, () => { this.setState({ errorOccured: true }); })
   }
 
-  geturl() {
+  getUrl() {
     const defaultScreen = './differentlocationsjson/default.json';
     const url = window.location.href;
     const substring = "screenplay=";
@@ -35,6 +36,7 @@ class Location extends Component {
       return params;
     }
   }
+
   getQueryVariable(variable) {
     var query = window.location.search.substring(1);
     var vars = query.split('&');
@@ -46,6 +48,7 @@ class Location extends Component {
     }
     console.log('Query variable %s not found', variable);
   }
+
   render() {
     const component = this.state.errorOccured
       ? <Error />

@@ -13,6 +13,7 @@ class Clock extends React.Component {
             date: moment().utcOffset(this.props.params['utc-diff'] * 60).format('ddd D MMM Y'),
         });
     }
+    
     incrementCounter() {
         var formatT = 'HH:mm:ss A';
         var formatD = 'ddd D MMM Y';

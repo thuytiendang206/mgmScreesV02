@@ -12,7 +12,7 @@ class Holiday extends Component {
     upcoming: []
   };
 
-  constructor(){
+  constructor() {
     super();
     //var currentDate = new Date("Dec 26 2017 06:00:00 GMT+0700"); //just use to demo
     var currentDate = new Date();
@@ -21,11 +21,11 @@ class Holiday extends Component {
     };
   }
 
-  componentWillMount(){
+  componentWillMount() {
     initHolidayData(this.state.currentDate);
     this.holiday = {
       today: getHolidayAtCurrentDate(this.state.currentDate),
-      upcoming:  getUpComingHoliday(this.state.currentDate)
+      upcoming: getUpComingHoliday(this.state.currentDate)
     }
   }
 
@@ -40,7 +40,7 @@ class Holiday extends Component {
                 <div className="panel-heading"><h3>Today Holiday - {this.state.currentDate.toDateString()}</h3></div>
                 <div className="panel-body">
                   <div className="row">
-                    {this.holiday.today.map((element, index) => <TodayItem key={index} today={element}/>)}
+                    {this.holiday.today.map((element, index) => <TodayItem key={index} today={element} />)}
                   </div>
                 </div>
               </div>
@@ -50,7 +50,7 @@ class Holiday extends Component {
                 <div className="panel-heading"><h3>Up Coming - 2 Weeks</h3></div>
                 <div className="panel-body">
                   <div className="row">
-                    {this.holiday.upcoming.map((element, index) => <UpComingItem key={index} upcoming={element}/>)}
+                    {this.holiday.upcoming.map((element, index) => <UpComingItem key={index} upcoming={element} />)}
                   </div>
                 </div>
               </div>

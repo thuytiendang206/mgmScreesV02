@@ -11,6 +11,7 @@ function drawHand(ctx, pos, length, width) {
     ctx.stroke();
     ctx.rotate(-pos);
 }
+
 function drawFace(ctx, radius, colorBackground) {
     var grad;
     ctx.beginPath();
@@ -27,9 +28,9 @@ function drawFace(ctx, radius, colorBackground) {
     ctx.beginPath();
     ctx.arc(0, 0, radius * 0.065, 0, 2 * Math.PI);
     ctx.fillStyle = 'white';
-
     ctx.fill();
 }
+
 function drawNumbers(ctx, radius) {
     var ang;
     var num;
@@ -47,8 +48,8 @@ function drawNumbers(ctx, radius) {
         ctx.rotate(-ang);
     }
 }
-function drawTime(ctx, radius, utcDiff) {
 
+function drawTime(ctx, radius, utcDiff) {
     var formatH = 'HH';
     var formatM = 'mm';
     var formatS = 'ss';
@@ -68,6 +69,7 @@ function drawTime(ctx, radius, utcDiff) {
     second = (second * Math.PI / 30);
     drawHand(ctx, second, radius * 0.8, radius * 0.02);
 }
+
 function getBackGroundColor(time) {
     switch (true) {
         case (time >= 19 || time < 5):
@@ -82,6 +84,7 @@ function getBackGroundColor(time) {
             return null;
     }
 }
+
 export function drawClock(ctx, radius, utcDiff) {
     drawFace(ctx, radius, getBackGroundColor(moment().utcOffset(utcDiff * 60).format("HH")));
     drawNumbers(ctx, radius);

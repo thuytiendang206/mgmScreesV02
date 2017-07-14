@@ -1,10 +1,11 @@
 import React from 'react';
 import axios from 'axios';
-import CalendarGUI from './CalendarGUI.js';
+import CalendarGUI from './CalendarGUI';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import './Calendar.css';
 
 class Calendar extends React.Component {
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -18,7 +19,7 @@ class Calendar extends React.Component {
   }
 
   //get full URL with Google API
-  getURl(id) {
+  getUrl(id) {
     return 'https://www.googleapis.com/calendar/v3/calendars/' + id
       + '/events?key='
       + 'AIzaSyDyWLiA-Jd0WcDsbedpw-7I8dp-rdinktA';
@@ -94,7 +95,7 @@ class Calendar extends React.Component {
       }
       // push event if the start and end in the same day
       else if (end.getDate() === start.getDate()) {
-        if (end.getHours()> this.props.params['time-min'] && start.getHours() < this.props.params['time-max']) {
+        if (end.getHours() > this.props.params['time-min'] && start.getHours() < this.props.params['time-max']) {
           objEvent.start = start;
           objEvent.end = end;
           ret.push(objEvent);
@@ -116,7 +117,7 @@ class Calendar extends React.Component {
       arr.push(item);
     }
     arr.map((item) => {
-      return axios.get(this.getURl(item['calendar-id']))
+      return axios.get(this.getUrl(item['calendar-id']))
         .then(response => {
           events = [...events, ...this.fetchData(response, item['color'])];
           this.setState({ events: events });
@@ -135,4 +136,5 @@ class Calendar extends React.Component {
     )
   }
 }
+
 export default Calendar;

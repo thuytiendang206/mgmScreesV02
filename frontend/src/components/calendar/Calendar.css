@@ -1,9 +1,9 @@
-.calendar-content{
-    width: 100%;
-    height: 100%;
+.calendar-content {
+    display:flex;
     display: -webkit-flex;
-    display: flex;
-    flex-direction: column;
+    flex-direction:column;
+    height:100%;
+    width:100%;
 }
 .rbc-event-label{
     display: none;

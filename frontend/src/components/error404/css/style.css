@@ -17,11 +17,11 @@ table{border-collapse:collapse;border-spacing:0;}
 	text-align: left;
 }
 .wrap>h1{
-	margin-top: 20px;
-	color: #603813;
-	font-size: 3em;
-	text-transform: uppercase;
-	font-weight: bold;
+	color:#603813;
+	font-size:3em;
+	font-weight:bold;
+	margin-top:20px;
+	text-transform:uppercase;
 }
 .wrap> .banner{
 	text-align:center;

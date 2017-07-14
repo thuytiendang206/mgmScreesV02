@@ -1,6 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 class FacebookItem extends Component {
+  
   loadMediaItem() {
     return this.props.item.type === "video"
       ? <iframe
@@ -16,12 +17,12 @@ class FacebookItem extends Component {
   }
 
   render() {
-    return(
+    return (
       <div className="col-sm-5">
         <div className="panel panel-default">
           <div className="fb-heading panel-heading">
-            <div> 
-              {this.props.item.name} 
+            <div>
+              {this.props.item.name}
               <p className="pull-right">{this.props.item.created_time.substring(0, 10)}</p>
             </div>
           </div>
@@ -29,7 +30,7 @@ class FacebookItem extends Component {
             <p>{this.props.item.message}</p>
             <p>{this.props.item.description}</p>
             <div className="media">
-              {this.loadMediaItem()} 
+              {this.loadMediaItem()}
             </div>
           </div>
         </div>

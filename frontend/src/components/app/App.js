@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import './App.css';
-import Location from '../Location/Location.js';
+import Location from '../location/Location';
+
 class App extends Component {
+  
   render() {
     return (
       <Location/>

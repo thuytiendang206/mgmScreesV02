@@ -1,13 +1,13 @@
 import React from 'react';
 import Clock from '../time/Clock';
-import Hello from '../hello/Hello.js';
-import Website from '../website/Website.js';
-import Holiday from '../holiday/Holiday.js';
-import FacebookPage from '../facebook/FacebookPage.js';
-import Danang from '../danang/Danang.js';
-import Hamburg from '../hamburg/Hamburg.js';
-import Weather from '../weather/Weather.js';
-import Calendar from '../calendar/Calendar.js'
+import Hello from '../hello/Hello';
+import Website from '../website/Website';
+import Holiday from '../holiday/Holiday';
+import FacebookPage from '../facebook/FacebookPage';
+import Danang from '../danang/Danang';
+import Hamburg from '../hamburg/Hamburg';
+import Weather from '../weather/Weather';
+import Calendar from '../calendar/Calendar';
 
 var row;
 var column;
@@ -62,7 +62,7 @@ export function View(cols, rows, apps, currentState) {
     state = currentState;
     if (!isGridLayout()) { return getElement(apps[0]) }
     else {
-        let combineClassName = 'rowClock row-'+row;
+        let combineClassName = 'rowClock row-' + row;
         return getElements(apps).map((element, index) => <div key={index} className={combineClassName}>{element}</div>)
     }
 }

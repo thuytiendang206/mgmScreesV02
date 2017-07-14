@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Hamburg.css';
+
 class Hamburg extends Component {
   
     constructor(props){
@@ -16,7 +17,6 @@ class Hamburg extends Component {
             </div>
         );
   }
-  
 }
 
 export default Hamburg;

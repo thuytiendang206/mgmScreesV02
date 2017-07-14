@@ -1,10 +1,10 @@
 .holiday-Bg{
-  background: url("../../static/resources/image/holiday_bg.jpg")  no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  height: 100vh;
+  -moz-background-size:cover;
+  -o-background-size:cover;
+  -webkit-background-size:cover;
+  background:url(../../static/resources/image/holiday_bg.jpg) no-repeat center center fixed;
+  background-size:cover;
+  height:100vh;
 }
 
 /* latin */
@@ -17,28 +17,27 @@
 }
 
 .holiday-title {
-  text-align: center;
-  font-weight: normal;
-  color: #fff;
-  text-transform: uppercase;
-  font-size: 8em;
-  white-space: nowrap;
-  font-size: 4vw;
-  z-index: 1000;
-  font-family: 'Bangers', cursive;
-  text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.7);
-  -moz-transform: skew(0, 0);
-  -ms-transform: skew(0, 0);
-  -webkit-transform: skew(0, 0);
-  transform: skew(0, 0);
-  -moz-transition-property: font-size;
-  -o-transition-property: font-size;
-  -webkit-transition-property: font-size;
-  transition-property: font-size;
-  -moz-transition-duration: 0.5s;
-  -o-transition-duration: 0.5s;
-  -webkit-transition-duration: 0.5s;
-  transition-duration: 0.5s;
+  -moz-transform:skew(0,0);
+  -moz-transition-duration:.5s;
+  -moz-transition-property:font-size;
+  -ms-transform:skew(0,0);
+  -o-transition-duration:.5s;
+  -o-transition-property:font-size;
+  -webkit-transform:skew(0,0);
+  -webkit-transition-duration:.5s;
+  -webkit-transition-property:font-size;
+  color:#fff;
+  font-family:Bangers, cursive;
+  font-size:4vw;
+  font-weight:normal;
+  text-align:center;
+  text-shadow:5px 5px 0 rgba(0,0,0,0.7);
+  text-transform:uppercase;
+  transform:skew(0,0);
+  transition-duration:.5s;
+  transition-property:font-size;
+  white-space:nowrap;
+  z-index:1000;
 }
 
 .holiday-todayItem div:nth-child(odd){
@@ -46,35 +45,34 @@
 }
 
 .eachItem{
-    min-height: 30px;
-    margin-bottom: 2px;
-    background-color: lightgrey;
-    font-size: 13px;
-
+   background-color:lightgrey;
+  font-size:13px;
+  margin-bottom:2px;
+  min-height:30px;
 }
 
 .margin15{
   margin-right: 15px
 }
 
-img.logoOffices{
-  width: 30px;
-  height: 30px;
-  display: inline-flex !important;
+img.logoOffices {
+  display:inline-flex!important;
+  height:30px;
+  width:30px;
 }
 
-img.square{
-  visibility: hidden;
-  width: 30px;
-  height: 30px;
-  display: inline-flex !important;
+img.square {
+  display:inline-flex!important;
+  height:30px;
+  visibility:hidden;
+  width:30px;
 }
 
-img.squareNoWidth{
-  visibility: hidden;
-  width: 1px;
-  height: 30px;
-  display: inline-flex !important;
+img.squareNoWidth {
+  display:inline-flex!important;
+  height:30px;
+  visibility:hidden;
+  width:1px;
 }
 
 .text-green{
@@ -83,27 +81,27 @@ img.squareNoWidth{
 }
 
 @media screen and (min-width: 1920px ){
-  .eachItem{
-    min-height: 55px;
-    margin-bottom: 2px;
-    background-color: lightgrey;
-    font-size: 20px;
+  .eachItem {
+    background-color:lightgrey;
+    font-size:20px;
+    margin-bottom:2px;
+    min-height:55px;
   }
 
-  img.logoOffices{
-    width: 55px;
-    height: 55px;
+  img.logoOffices {
+    height:55px;
+    width:55px;
   }
 
-  img.square{
-    visibility: hidden;
-    width: 55px;
-    height: 55px;
+  img.square {
+    height:55px;
+    visibility:hidden;
+    width:55px;
   }
 
-  img.squareNoWidth{
-    visibility: hidden;
-    width: 1px;
-    height: 55px;
+  img.squareNoWidth {
+    height:55px;
+    visibility:hidden;
+    width:1px;
   }
 }

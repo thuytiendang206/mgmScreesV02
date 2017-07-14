@@ -2,6 +2,7 @@ import React from 'react';
 import { drawClock } from './AnalogAction';
 
 class Analog extends React.Component {
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -67,4 +68,5 @@ class Analog extends React.Component {
         );
     };
 }
+
 export default Analog;

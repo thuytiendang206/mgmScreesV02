@@ -16,6 +16,7 @@ const rootUrl = 'http://api.openweathermap.org/data/2.5/weather?q=';
 const apiUrl = '&appid=9deb1490da7395429f58c27e7cf9746c';
 
 class Weather extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = { wind: {} }
@@ -85,4 +86,5 @@ class Weather extends React.Component {
         this.getWeather(this.props.params);
     }
 }
+
 export default Weather;

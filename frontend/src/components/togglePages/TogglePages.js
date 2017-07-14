@@ -1,9 +1,10 @@
 import React from 'react';
-import {CSSTransitionGroup} from 'react-transition-group';
-import MultipleScreen from '../multipleScreen/MultipleScreen.js';
+import { CSSTransitionGroup } from 'react-transition-group';
+import MultipleScreen from '../multipleScreen/MultipleScreen';
 import './TogglePages.css';
 
 class TogglePages extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -45,12 +46,15 @@ class TogglePages extends React.Component {
       animations: [...this.state.animations.slice(1), this.state.animations[0]]
     })
   }
+
   componentDidMount() {
     this.intervalId = setInterval(this.timer.bind(this), this.state.displayTime * 1000);
   }
+
   componentWillUnmount() {
     clearInterval(this.intervalId);
   }
+  
   render() {
     var Child = this.state.screens[0];
     return (

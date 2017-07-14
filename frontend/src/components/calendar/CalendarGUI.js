@@ -3,6 +3,7 @@ import moment from 'moment';
 import BigCalendar from 'react-big-calendar';
 
 class CalendarGUI extends React.Component {
+  
   constructor(props) {
     super(props);
     BigCalendar.momentLocalizer(moment);
@@ -90,7 +91,7 @@ class CalendarGUI extends React.Component {
           }}
           eventPropGetter={(this.eventStyleGetter)}
           //set limit time range for calendar
-          max={new Date(1995, 12, 12, this.props.timeMax - 1,59)}
+          max={new Date(1995, 12, 12, this.props.timeMax - 1, 59)}
           min={new Date(1995, 12, 12, this.props.timeMin)}
           endAccessor={({ end }) => new Date(end.getTime() - 1)}
         />
@@ -98,4 +99,5 @@ class CalendarGUI extends React.Component {
     )
   }
 }
+
 export default CalendarGUI;

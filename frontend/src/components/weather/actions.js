@@ -1,4 +1,4 @@
-export function getWindDegIcon(deg){
+export function getWindDegIcon(deg) {
     switch (true) {
         case (deg >= 0 && deg < 23):
             return "towards-0-deg";
@@ -36,7 +36,7 @@ export function getWindDegIcon(deg){
     }
 }
 
-export function getBackgroundColor(temp){
+export function getBackgroundColor(temp) {
     if (temp >= 30) {
         return 'very-warm';
     }
@@ -54,37 +54,37 @@ export function getBackgroundColor(temp){
     }
 }
 
-export function convertCtoF(temp){
-    return Math.round( (9/5)*temp +32 );
+export function convertCtoF(temp) {
+    return Math.round((9 / 5) * temp + 32);
 }
 
 export function getStyles(avg) {
-  let styles = {
-    city: {
-      fontSize: `${avg / 7}px`
-    },
-    weather: {
-      paddingBottom: `${avg / 15}px`,
-      marginBottom: `${avg / 50}px`
-    },
-    wi: {
-      fontSize: `${avg / 4}px`
-    },
-    weatherDetail: {
-      paddingTop: `${avg / 20}px`,
-    },
-    temp: {
-      fontSize: `${avg / 7}px`,
-    },
-    humidity: {
-      fontSize: `${avg / 8}px`,
-    },
-    wind: {
-      fontSize: `${avg / 8}px`,
-    },
-    tempNumber: {
-      paddingRight: `${avg / 15}px`,
-    }
-  };
-  return styles;
+    let styles = {
+        city: {
+            fontSize: `${avg / 7}px`
+        },
+        weather: {
+            paddingBottom: `${avg / 15}px`,
+            marginBottom: `${avg / 50}px`
+        },
+        wi: {
+            fontSize: `${avg / 4}px`
+        },
+        weatherDetail: {
+            paddingTop: `${avg / 20}px`,
+        },
+        temp: {
+            fontSize: `${avg / 7}px`,
+        },
+        humidity: {
+            fontSize: `${avg / 8}px`,
+        },
+        wind: {
+            fontSize: `${avg / 8}px`,
+        },
+        tempNumber: {
+            paddingRight: `${avg / 15}px`,
+        }
+    };
+    return styles;
 }

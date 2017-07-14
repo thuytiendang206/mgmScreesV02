@@ -83,6 +83,7 @@ export function getVerticalLayoutStyle(width, height) {
     };
     return styles;
 }
+
 export function getBackGroundColor(time) {
     switch (true) {
         case (time >= 19 || time < 5):

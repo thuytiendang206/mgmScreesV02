@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './Danang.css';
-class Danang extends Component {
 
+class Danang extends Component {
+    
     constructor(props){
         super(props);
         this.state = {
