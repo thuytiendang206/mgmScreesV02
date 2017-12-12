@@ -11,16 +11,17 @@ import com.mgmtp.screens.constant.VMLocation;
 @Configuration
 public class WebSecurityConfig {
 
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurerAdapter() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins(VMLocation.LOCAL_URL, VMLocation.DEV_URL, VMLocation.PROD_URL)
-						.allowedMethods("OPTIONS", "GET", "POST", "PUT", "DELETE").allowCredentials(false)
-						.maxAge(1728000);
-			}
-		};
-	}
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurerAdapter() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**").allowedOrigins(VMLocation.LOCAL_URL, VMLocation.DEV_URL, VMLocation.PROD_URL,
+                        VMLocation.DEV_FULL_URL, VMLocation.PROD_FULL_URL)
+                        .allowedMethods("OPTIONS", "GET", "POST", "PUT", "DELETE").allowCredentials(false)
+                        .maxAge(1728000);
+            }
+        };
+    }
 
 }
