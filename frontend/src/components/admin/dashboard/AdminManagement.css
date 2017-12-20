@@ -8,27 +8,8 @@
 }
 
 .screenplay-title{
-	color: #73ef88;
-	font-family: 'Bangers', cursive;
-	font-size: 8em;
-	font-weight: normal;
+	color: #023370;
 	text-align: center;
-	text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.7);
-	text-transform: uppercase;
-	transition-duration: 0.5s;
-	white-space: nowrap;
-	z-index: 1000;
-	-moz-transform: skew(0, 0);
-	-ms-transform: skew(0, 0);
-	-webkit-transform: skew(0, 0);
-	transform: skew(0, 0);
-	-moz-transition-property: font-size;
-	-o-transition-property: font-size;
-	-webkit-transition-property: font-size;
-	transition-property: font-size;
-	-moz-transition-duration: 0.5s;
-	-o-transition-duration: 0.5s;
-	-webkit-transition-duration: 0.5s;
 }
 
 span.icon-action-size i{
@@ -59,4 +40,15 @@ span.icon-action-size i{
 }
 .pointer{
 	cursor: pointer;
+}
+
+.admin-navbar {
+	background: #fff;
+	color: #292929;
+	border-bottom: 1px solid #2e3d54;
+}
+
+.form-header {
+	background: #7e95ad;
+	color: #ffff;
 }
