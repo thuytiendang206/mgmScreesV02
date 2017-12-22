@@ -42,7 +42,7 @@ class Weather extends React.Component {
         const weatherClass = 'wi wi-owm-' + this.state.icon;
         const backgroundColorClass = "weather-widget " + getBackgroundColor(this.state.temp);
         const windIcon = "wi wi-wind " + this.state.wind.iconDeg;
-        const tempShow = this.state.temp
+        const tempShow = this.state.temp != undefined
             ? this.props.params.degrees === "F"
                 ? convertCtoF(this.state.temp)
                 : this.state.temp
@@ -76,10 +76,6 @@ class Weather extends React.Component {
                 </div>
             </div>
         )
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.getWeather(nextProps.params);
     }
 
     componentDidMount() {

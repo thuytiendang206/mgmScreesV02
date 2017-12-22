@@ -68,7 +68,7 @@ export function getStyles(avg) {
             marginBottom: `${avg / 50}px`
         },
         wi: {
-            fontSize: `${avg / 4}px`
+            fontSize: `${avg / 6}px`
         },
         weatherDetail: {
             paddingTop: `${avg / 20}px`,
