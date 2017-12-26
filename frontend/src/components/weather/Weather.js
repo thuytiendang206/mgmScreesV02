@@ -30,7 +30,7 @@ class Weather extends React.Component {
                     temp: Math.round(res.data.main.temp - 273.15),
                     humidity: res.data.main.humidity,
                     wind: {
-                        speed: res.data.wind.speed,
+                        speed: res.data.wind.speed.toFixed(1),
                         iconDeg: getWindDegIcon(res.data.wind.deg)
                     },
                     icon: res.data.weather[0].id,
@@ -39,7 +39,7 @@ class Weather extends React.Component {
     }
 
     render() {
-        const weatherClass = 'wi wi-owm-' + this.state.icon;
+        const weatherClass = 'weather-icon wi wi-owm-' + this.state.icon;
         const backgroundColorClass = "weather-widget " + getBackgroundColor(this.state.temp);
         const windIcon = "wi wi-wind " + this.state.wind.iconDeg;
         const tempShow = this.state.temp != undefined
@@ -47,9 +47,9 @@ class Weather extends React.Component {
                 ? convertCtoF(this.state.temp)
                 : this.state.temp
             : undefined;
-        const styles = this.props.widthSize > this.props.heightSize ? getStyles(this.props.heightSize) : getStyles(this.props.widthSize);
+        const styles = getStyles(this.props.widthSize, this.props.heightSize)
         return (
-            <div className={backgroundColorClass}>
+            <div className={backgroundColorClass} style={styles.parentsSize} >
                 <h1 className="city" style={styles.city}>{this.props.params.city}</h1>
                 <div className='weather' style={styles.weather}>
                     <i className={weatherClass} style={styles.wi}></i>
@@ -64,11 +64,11 @@ class Weather extends React.Component {
                     </div>
                     <div className="right-side">
                         <div className="humidity" style={styles.humidity}>
-                            <i className="wi wi-raindrop"></i><p>{this.state.humidity} <span>%</span></p>
+                            <p><i className="wi wi-raindrop"></i><span className="numbers">{this.state.humidity}</span> <span>%</span></p>
                         </div>
                         <div className="wind" style={styles.wind}>
-                            <i className={windIcon}></i>
-                            <p>{this.state.wind.speed}
+                            <p> <i className={windIcon}></i>
+                                <span className="numbers">{this.state.wind.speed} </span>
                                 <span className="vel"> m/s</span>
                             </p>
                         </div>

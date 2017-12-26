@@ -58,14 +58,26 @@ export function convertCtoF(temp) {
     return Math.round((9 / 5) * temp + 32);
 }
 
-export function getStyles(avg) {
+export function getStyles(widthSize, heightSize) {
+    let avg = widthSize;
+    let border_bottom = "2px solid white";
+    if (widthSize > heightSize) {
+        avg = heightSize;
+        border_bottom = "none";
+    }
     let styles = {
+        parentsSize: {
+            width: `${widthSize}px`,
+            height: `${heightSize}px`
+        },
         city: {
-            fontSize: `${avg / 7}px`
+            fontSize: `${avg / 7}px`,
+            marginTop: '3%'
         },
         weather: {
-            paddingBottom: `${avg / 15}px`,
-            marginBottom: `${avg / 50}px`
+            paddingBottom: '0px',
+            marginBottom: '0px',
+            borderBottom: `${border_bottom}`
         },
         wi: {
             fontSize: `${avg / 6}px`

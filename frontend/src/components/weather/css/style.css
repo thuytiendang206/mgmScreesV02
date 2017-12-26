@@ -47,7 +47,12 @@
   padding-bottom: 5vh;
   margin: 5vw;
   margin-top: 0;
-  border-bottom: 2px solid white;
+}
+
+.weather-icon {
+  -ms-transform: weather-icon-spin infinite 5s linear;
+  -webkit-transform: weather-icon-spin infinite 5s linear;
+  animation: weather-icon-spin infinite 5s linear;
 }
 
 .weather .wi {
@@ -110,14 +115,12 @@
   line-height: 0.8em;
 }
 
-.weather-details .humidity, .weather-details .wind {
-  font-size: 13vh;
-  text-align: left;
-  padding-left: 2vw;
+.numbers {
+  padding-left: 0.75vw;
 }
 
-.weather-details .humidity .wi, .weather-details .wind .wi {
-  vertical-align: top;
+.weather-details .humidity, .weather-details .wind {
+  text-align: left;
 }
 
 .weather-details .wind .wi {
@@ -128,16 +131,14 @@
   font-size: 0.6em;
 }
 
-.weather-details .wind > p, .weather-details .humidity > p {
+.weather-details .wind>p, .weather-details .humidity>p {
   display: inline-block;
-  padding-left: 3vw;
 }
 
 @media screen and (max-width: 768px) {
   .weather-details .temp {
     font-size: 4em;
   }
-
   .weather-details .humidity, .weather-details .wind {
     font-size: 3em;
   }
@@ -147,8 +148,16 @@
   .weather-details .temp {
     font-size: 3em;
   }
-
   .weather-details .humidity, .weather-details .wind {
     font-size: 2em;
+  }
+}
+
+@keyframes weather-icon-spin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
   }
 }
