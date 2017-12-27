@@ -4,9 +4,10 @@
   "private": true,
   "dependencies": {
     "axios": "^0.16.2",
+    "babel-polyfill": "^6.26.0",
     "bootstrap": "^3.3.7",
+    "date-chinese": "1.0.2",
     "date-holidays": "1.0.1",
-    "date-chinese":"1.0.2",
     "fb-react-sdk": "^1.0.4",
     "moment-timezone": "^0.5.13",
     "react": "^15.5.4",
@@ -15,11 +16,9 @@
     "react-router-dom": "^4.1.1",
     "react-transition-group": "^1.2.0"
   },
-
   "devDependencies": {
     "react-scripts": "1.0.7"
   },
-
   "scripts": {
     "start": "react-scripts start",
     "build": "sh -ac '. ./.env.${REACT_APP_ENV} ; react-scripts build'",

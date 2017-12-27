@@ -1,13 +1,12 @@
+import offices from '../../static/resources/file/config/offices.json';
+import Holidays from 'date-holidays';
 
-var Holidays = require('date-holidays');
-
-let offices = require('../../static/resources/file/config/offices.json');
 let holidayData = [];
 const size = offices.length;
 
 function upComingItemConvertRowToString(row) {
-	var rowContent = "";
-	for (var i = 0; i < row.length; i++) {
+	let rowContent = "";
+	for (let i = 0; i < row.length; i++) {
 		rowContent += (row[i].name + "(");
 		rowContent += row[i].offices.join();
 		rowContent += " )";
@@ -38,7 +37,7 @@ export function initHolidayData(currentDate) {
 	holidayData = [];
 	let year = currentDate.getFullYear();
 	for (let i = 0; i < size; i++) {
-		var holiday = new Holidays(offices[i].countryCode, offices[i].cityCode);
+		let holiday = new Holidays(offices[i].countryCode, offices[i].cityCode);
 		holiday.setLanguages("en");
 		holidayData.push(holiday.getHolidays(year));
 	}
@@ -57,13 +56,13 @@ export function getHolidayAtCurrentDate(currentDate) {
 }
 
 export function getUpComingHoliday(currentDate) {
-	var results = [];
-	var nextDate = new Date(currentDate);
-	for (var i = 0; i < 13; i++) {
+	let results = [];
+	let nextDate = new Date(currentDate);
+	for (let i = 0; i < 13; i++) {
 		nextDate.setTime(nextDate.getTime() + (24 * 60 * 60 * 1000));
-		var obj = {};
-		var holidayUpComing = [];
-		for (var j = 0; j < size; j++) {
+		let obj = {};
+		let holidayUpComing = [];
+		for (let j = 0; j < size; j++) {
 			holidayUpComing.push(isHoliday(j, nextDate, "public"));
 		}
 		obj.date = new Date(nextDate);
@@ -93,4 +92,41 @@ export function handleUpComingHoliday(holidayUpComing) {
 		}
 	}
 	return upComingItemConvertRowToString(row);
+}
+export function getStyles(widthSize, heightSize) {
+	let size = widthSize < heightSize ? widthSize : heightSize
+	let style = {
+		eachItem: {
+			fontSize: `${size / 25}px`,
+			minHeight: `${size / 25}px`,
+			maxHeight: `${size / 20}px`,
+		},
+		logoOffices: {
+			height: `${size / 25}px`,
+			width: `${size / 25}px`,
+			marginRight: `${size / 60}px`
+		},
+		logomgm: {
+			width: `${size / 10}px`,
+			marginLeft: `${size / 20}px`,
+			marginTop: `${size / 60}px`,
+		},
+		holidayTitle: {
+			fontSize: `${size / 19}px`,
+		},
+		panelHeadingTitle: {
+			fontSize: `${size / 47}px`,
+			marginTop: `0px`,
+		},
+		upEventContent: {
+			fontSize: `${size / 58}px`,
+			float: `left`
+		},
+		textContent: {
+			fontSize: `${size / 55}px`,
+			paddingLeft: `${size / 60}px`,
+			float: `left`
+		}
+	}
+	return style;
 }
