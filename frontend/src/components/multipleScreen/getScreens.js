@@ -43,13 +43,10 @@ function getElements(apps) {
 
 function getElement(app) {
     let MyElement = components[app['type']];
-    if (MyElement === Clock || MyElement === Weather) {
-        return <MyElement widthSize={state.width / column}
-            heightSize={state.height / row}
-            isChanged={state.isChanged}
-            params={app['params']} />
-    }
-    return <MyElement params={app['params']} />;
+    return <MyElement widthSize={state.width / column}
+        heightSize={state.height / row}
+        isChanged={state.isChanged}
+        params={app['params']} />
 }
 
 function isGridLayout() {
