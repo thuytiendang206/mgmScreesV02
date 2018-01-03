@@ -15,8 +15,8 @@ class Clock extends React.Component {
   }
 
   incrementCounter() {
-    var formatT = 'HH:mm:ss A';
-    var formatD = 'ddd D MMM Y';
+    const formatT = 'HH:mm:ss';
+    const formatD = 'ddd D MMM YYYY';
     this.setState({
       time: moment().utcOffset(this.props.params['utc-diff'] * 60).format(formatT),
       date: moment().utcOffset(this.props.params['utc-diff'] * 60).format(formatD)
@@ -41,7 +41,7 @@ class Clock extends React.Component {
         <div style={styles.text}>
           <h2 style={styles.time}>{this.state.time}</h2>
           <h2 style={styles.date}>{this.state.date}</h2>
-          <h2 style={styles.date}>{this.props.params.city}</h2>
+          <h2 style={styles.city}>{this.props.params.city}</h2>
         </div>
       </div>
     );
