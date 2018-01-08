@@ -1,72 +1,59 @@
 import React from 'react';
-import { drawClock } from './AnalogAction';
+import moment from 'moment-timezone';
+import './clock.css';
 
 class Analog extends React.Component {
-    
-    constructor(props) {
-        super(props);
-        this.state = {
-            ctx: 0,
-            radius: 0,
-            isChanged: true
-        };
+  constructor(props) {
+    super(props);
+    this.state = {
+      timer: setInterval(this.setDate.bind(this), 1000),
+      secondDegrees: (this.getTime('ss') / 60) * 360 + 90,
+      minuteDegrees: (this.getTime('mm') / 60) * 360 + 90,
+      hourDegrees: (this.getTime('HH') / 12) * 360 + 90
     }
+  }
 
-    componentDidMount() {
-        let tmpradius;
-        let canvas = this.refs.mycanvas;
-        let container = this.refs.container;
-        canvas.height = container.clientWidth < container.clientHeight ? container.clientWidth : container.clientHeight;
-        canvas.width = canvas.height;
-        this.setState(
-            {
-                ctx: canvas.getContext("2d"),
-                radius: canvas.height / 2 * 0.9
+  getTime(format) {
+    return moment().utcOffset(this.props.utcDiff * 60).format(format);
+  }
 
-            },
-            () => {
-                tmpradius = this.state.radius / 0.9;
-                this.state.ctx.translate(tmpradius, tmpradius);
-                drawClock(this.state.ctx, this.state.radius, this.props.utcDiff);
-                this.interval = setInterval(() => {
-                    drawClock(this.state.ctx, this.state.radius, this.props.utcDiff)
-                }, 1000);
-            }
-        );
-    }
+  componentWillUnmount() {
+    clearInterval(this.state.timer);
+  }
 
-    componentWillReceiveProps() {
-        if (this.props.isChanged !== this.state.isChanged) {
-            let tmpradius;
-            let canvas = this.refs.mycanvas;
-            let container = this.refs.container;
-            canvas.height = container.clientWidth < container.clientHeight ? container.clientWidth : container.clientHeight;
-            canvas.width = canvas.height;
-            this.setState(
-                {
-                    ctx: canvas.getContext("2d"),
-                    radius: canvas.height / 2 * 0.9,
-                    isChanged: !this.state.isChanged
-                },
-                () => {
-                    tmpradius = this.state.radius / 0.9;
-                    this.state.ctx.translate(tmpradius, tmpradius);
-                }
-            );
-        }
-    }
+  setDate() {
+    this.setState({
+      secondDegrees: (this.getTime('ss') / 60) * 360 + 90,
+      minuteDegrees: (this.getTime('mm') / 60) * 360 + 90,
+      hourDegrees: (this.getTime('HH') / 12) * 360 + 90
+    });
+  }
 
-    componentWillUnmount() {
-        clearInterval(this.interval);
-    }
-
-    render() {
-        return (
-            <div className='analog' ref='container' style={this.props.analogStyle}>
-                <canvas className="canvas" ref="mycanvas"></canvas>
-            </div>
-        );
-    };
+  render() {
+    let width = parseInt(this.props.analogStyle.width);
+    let minHeight = parseInt(this.props.analogStyle.minHeight);
+    let size = (width < minHeight) ? width * 0.95 : minHeight * 0.95;
+    return (
+      <div className="clock-container" style={this.props.analogStyle}>
+        <div className="analog-clock" style={{
+          width: `${size}px`,
+          height: `${size}px`,
+          border: `${0.03 * size}px solid white`
+        }}>
+          <div className="dot"/>
+          <div className="hand hour-hand" style={{
+            transform: `rotate(${this.state.hourDegrees}deg)`
+          }}/>
+          <div className="hand min-hand" style={{
+            transform: `rotate(${this.state.minuteDegrees}deg)`
+          }}/>
+          <div className="hand second-hand" style={{
+            transform: `rotate(${this.state.secondDegrees}deg)`
+          }}/>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Analog;
