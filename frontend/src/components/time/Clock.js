@@ -1,25 +1,24 @@
 import React from 'react';
 import Analog from './Analog';
 import moment from 'moment-timezone';
-import {getHorizontalLayoutStyle, getVerticalLayoutStyle, getBackGroundColor} from './ClockStyle';
+import { getHorizontalLayoutStyle, getVerticalLayoutStyle, getBackGroundColor } from './ClockStyle';
 import './clock.css';
-
+const timeFormat = 'HH:mm:ss';
+const dateFormat = 'ddd D MMM';
 class Clock extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = ({
-      time: moment().utcOffset(this.props.params['utc-diff'] * 60).format('HH:mm:ss A'),
-      date: moment().utcOffset(this.props.params['utc-diff'] * 60).format('ddd D MMM Y'),
+      time: moment().utcOffset(this.props.params['utc-diff'] * 60).format(timeFormat),
+      date: moment().utcOffset(this.props.params['utc-diff'] * 60).format(dateFormat),
     });
   }
 
   incrementCounter() {
-    const formatT = 'HH:mm:ss';
-    const formatD = 'ddd D MMM YYYY';
     this.setState({
-      time: moment().utcOffset(this.props.params['utc-diff'] * 60).format(formatT),
-      date: moment().utcOffset(this.props.params['utc-diff'] * 60).format(formatD)
+      time: moment().utcOffset(this.props.params['utc-diff'] * 60).format(timeFormat),
+      date: moment().utcOffset(this.props.params['utc-diff'] * 60).format(dateFormat)
     });
   }
 
@@ -37,7 +36,7 @@ class Clock extends React.Component {
 
     return (
       <div className={ClassClockCss} style={styles.clock}>
-        <Analog analogStyle={styles.analog} utcDiff={this.props.params['utc-diff']}/>
+        <Analog analogStyle={styles.analog} utcDiff={this.props.params['utc-diff']} />
         <div style={styles.text}>
           <h2 style={styles.time}>{this.state.time}</h2>
           <h2 style={styles.date}>{this.state.date}</h2>
