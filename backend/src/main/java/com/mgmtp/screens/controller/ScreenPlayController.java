@@ -16,8 +16,12 @@ import com.mgmtp.screens.service.ScreenPlayService;
 @RequestMapping("/api/screenplay")
 public class ScreenPlayController {
 
-	@Autowired
 	private ScreenPlayService screenPlayService;
+
+	@Autowired
+	public ScreenPlayController(ScreenPlayService screenPlayService) {
+		this.screenPlayService = screenPlayService;
+	}
 
 	@RequestMapping()
 	public ResponseEntity<List<ScreenPlayDTO>> getAll() {

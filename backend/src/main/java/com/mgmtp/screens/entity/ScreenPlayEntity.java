@@ -3,14 +3,7 @@ package com.mgmtp.screens.entity;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "screen_play")
@@ -32,12 +25,22 @@ public class ScreenPlayEntity implements Serializable {
 	@OneToMany(mappedBy = "screenPlay", cascade = CascadeType.ALL)
 	private List<ScreenEntity> screens;
 
+	@ManyToOne
+	@JoinColumn(name = "users_id", nullable = false)
+	private UserEntity user;
+
 	public ScreenPlayEntity() {
 	}
 
 	public ScreenPlayEntity(String name, int displayTime) {
 		this.name = name;
 		this.displayTime = displayTime;
+	}
+
+	public ScreenPlayEntity(String name, int displayTime, UserEntity user) {
+		this.name = name;
+		this.displayTime = displayTime;
+		this.user = user;
 	}
 
 	public Integer getId() {
@@ -72,4 +75,7 @@ public class ScreenPlayEntity implements Serializable {
 		this.screens = screens;
 	}
 
+	public UserEntity getUser() { return user; }
+
+	public void setUser(UserEntity user) { this.user = user; }
 }

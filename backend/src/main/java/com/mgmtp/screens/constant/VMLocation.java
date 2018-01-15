@@ -6,8 +6,4 @@ public class VMLocation {
 	public static final String PROD_URL = "http://prodscreens";
 	public static final String DEV_FULL_URL = "http://devscreens.mgm-edv.de";
 	public static final String PROD_FULL_URL = "http://prodscreens.mgm-edv.de";
-
-	private VMLocation() {
-	}
-
 }

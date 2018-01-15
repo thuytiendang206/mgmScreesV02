@@ -9,35 +9,29 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mgmtp.screens.entity.AppEntity;
-import com.mgmtp.screens.entity.ParameterEntity;
-import com.mgmtp.screens.entity.ScreenEntity;
-import com.mgmtp.screens.entity.ScreenPlayEntity;
-import com.mgmtp.screens.model.AppDTO;
-import com.mgmtp.screens.model.ScreenDTO;
-import com.mgmtp.screens.model.ScreenPlayDTO;
-import com.mgmtp.screens.repository.AppDAO;
-import com.mgmtp.screens.repository.ScreenDAO;
-import com.mgmtp.screens.repository.ScreenPlayDAO;
+import com.mgmtp.screens.entity.*;
+import com.mgmtp.screens.model.*;
+import com.mgmtp.screens.repository.*;
 
 @Service()
 public class ScreenPlayServiceImpl implements ScreenPlayService {
 
-	@Autowired
 	private ScreenPlayDAO screenPlayDAO;
 
-	@Autowired
 	private ScreenDAO screenDAO;
 
-	@Autowired
 	private AppDAO appDAO;
+
+	@Autowired
+	public ScreenPlayServiceImpl(ScreenPlayDAO screenPlayDAO, ScreenDAO screenDAO, AppDAO appDAO) {
+		this.screenPlayDAO = screenPlayDAO;
+		this.screenDAO = screenDAO;
+		this.appDAO = appDAO;
+	}
 
 	@Override
 	public boolean isExist(Integer id) {
-		if (screenPlayDAO.findOne(id) != null) {
-			return true;
-		}
-		return false;
+		return (screenPlayDAO.findOne(id) != null);
 	}
 
 	@Override
@@ -69,6 +63,27 @@ public class ScreenPlayServiceImpl implements ScreenPlayService {
 			}
 		}
 		return screenPlays;
+	}
+
+	@Override
+	public List<ScreenPlayDTO> findAllByUser(String email) {
+		List<ScreenPlayEntity> list = screenPlayDAO.getAllByUser_Email(email);
+		if (list == null) {
+			return null;
+		}
+		List<ScreenPlayDTO> screenPlays = new ArrayList<>();
+		for (ScreenPlayEntity item : list) {
+			screenPlays.add(ScreenPlayDTO.fromEntityByAdmin(item));
+		}
+		return screenPlays;
+	}
+
+	@Override
+	public void addNewScreenPlay(ScreenPlayDTO screenPlayDTO, UserEntity user) {
+		ScreenPlayEntity screenPlayEntity = new ScreenPlayEntity(screenPlayDTO.getName(),
+				screenPlayDTO.getDisplayTime(), user);
+		screenPlayEntity.setScreens(covertListScreenDTOToEntity(screenPlayDTO.getScreens(), screenPlayEntity));
+		screenPlayDAO.save(screenPlayEntity);
 	}
 
 	@Override
@@ -143,7 +158,7 @@ public class ScreenPlayServiceImpl implements ScreenPlayService {
 
 	private boolean isExistInScreenDTOList(ScreenEntity screenEntity, List<ScreenDTO> newScreenDTOList) {
 		for (ScreenDTO screen : newScreenDTOList) {
-			if (screen.getId() != null && screenEntity.getId() == screen.getId()) {
+			if (screen.getId() != null && screenEntity.getId().equals(screen.getId())) {
 				return true;
 			}
 		}
@@ -162,7 +177,7 @@ public class ScreenPlayServiceImpl implements ScreenPlayService {
 
 	private boolean isExistInAppDTOList(AppEntity appEntity, List<AppDTO> newAppDTOList) {
 		for (AppDTO app : newAppDTOList) {
-			if (app.getId() != null && appEntity.getId() == app.getId()) {
+			if (app.getId() != null && appEntity.getId().equals(app.getId())) {
 				return true;
 			}
 		}

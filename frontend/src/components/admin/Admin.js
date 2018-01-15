@@ -2,7 +2,10 @@ import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import AdminManagement from './dashboard/AdminManagement';
 import ScreenPlayForm from './forms/ScreenPlayForm';
+import LoginPage from './authentication/LoginPage';
+import RegisterPage from "./authentication/RegisterPage";
 import axios from 'axios';
+import {loggedIn} from "./authentication/oauth";
 
 class Admin extends Component {
 
@@ -12,6 +15,7 @@ class Admin extends Component {
     super();
     this.state = {
       data: [],
+      accessToken: loggedIn()
     };
     this.deleteScreenPlay = this.deleteScreenPlay.bind(this);
     this.updateScreenPlay = this.updateScreenPlay.bind(this);
@@ -19,10 +23,15 @@ class Admin extends Component {
   }
 
   async componentDidMount() {
-    let data = await axios.get(this.url_backend);
-    this.setState({
-      data: data.data
-    });
+    if(this.state.accessToken){
+      axios.defaults.headers.common['Authorization'] = `Bearer ${this.state.accessToken}`;
+      let data = await axios.get(this.url_backend);
+      this.setState({
+        data: data.data
+      });
+    } else {
+      axios.defaults.headers.common = undefined;
+    }
   }
 
   async deleteScreenPlay(id, position) {
@@ -71,9 +80,18 @@ class Admin extends Component {
     return (
       <Router>
         <Switch>
-          <Route exact path={this.props.match.url}
-                 render={(props) => <AdminManagement data={this.state.data}
-                                                     delete={this.deleteScreenPlay} {...props}/>}/>
+          {
+            this.state.accessToken
+              ? <Route exact path={this.props.match.url}
+                       render={(props) => <AdminManagement data={this.state.data}
+                                                           delete={this.deleteScreenPlay}{...props}/>}/>
+              : <Route exact path={this.props.match.url}
+                       render={(props) => <LoginPage {...props}/>}/>
+          }
+          <Route path={`${this.props.match.url}/login`}
+                 render={(props) => <LoginPage {...props}/>}/>
+          <Route path={`${this.props.match.url}/register`}
+                 render={(props) => <RegisterPage {...props}/>}/>
           <Route path={`${this.props.match.url}/screenplay`}
                  render={(props) => <ScreenPlayForm update={this.updateScreenPlay}
                                                     save={this.saveScreenPlay}{...props}/>}/>

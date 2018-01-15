@@ -1,27 +1,46 @@
 package com.mgmtp.screens.config;
 
+import com.mgmtp.screens.filter.JWTAuthorizationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-import com.mgmtp.screens.constant.VMLocation;
+import static com.mgmtp.screens.constant.VMLocation.*;
+import static com.mgmtp.screens.constant.SecurityConstants.*;
 
 @Configuration
-public class WebSecurityConfig {
-
+@EnableWebSecurity
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins(VMLocation.LOCAL_URL, VMLocation.DEV_URL, VMLocation.PROD_URL,
-                        VMLocation.DEV_FULL_URL, VMLocation.PROD_FULL_URL)
+                registry.addMapping("/**").allowedOrigins(LOCAL_URL, DEV_URL, PROD_URL,
+                        DEV_FULL_URL, PROD_FULL_URL)
                         .allowedMethods("OPTIONS", "GET", "POST", "PUT", "DELETE").allowCredentials(false)
                         .maxAge(1728000);
             }
         };
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable().cors().and().authorizeRequests()
+                .antMatchers("/").permitAll()
+                .antMatchers(USER_URL).permitAll()
+                .antMatchers(PUBLIC_SCREENPLAY_URL).permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .addFilter(new JWTAuthorizationFilter(authenticationManager()))
+                // this disables session creation on Spring Security
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
 }

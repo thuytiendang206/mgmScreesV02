@@ -9,12 +9,17 @@
     "date-chinese": "1.0.2",
     "date-holidays": "1.0.1",
     "fb-react-sdk": "^1.0.4",
+    "js-sha256": "^0.9.0",
+    "jwt-decode": "^2.2.0",
+    "material-ui": "^0.20.0",
     "moment-timezone": "^0.5.13",
+    "njwt": "^0.4.0",
     "react": "^15.5.4",
     "react-big-calendar": "^0.14.3",
     "react-dom": "^15.5.4",
     "react-router-dom": "^4.1.1",
-    "react-transition-group": "^1.2.0"
+    "react-transition-group": "^1.2.0",
+    "superagent": "^3.8.2"
   },
   "devDependencies": {
     "react-scripts": "1.0.7"

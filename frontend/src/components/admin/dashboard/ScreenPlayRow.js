@@ -1,8 +1,11 @@
 import React from 'react';
-import {BrowserRouter as Router, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const ScreenPlayRow = (props) => {
   let appList = [];
+  const deleteScreenplay = () => {
+    props.delete(props.data.id, (props.index - 1));
+  }
   return (
     <tr>
       <td>{props.index}</td>
@@ -40,7 +43,7 @@ const ScreenPlayRow = (props) => {
 							<Link to={{pathname: 'admin/screenplay', state: {data: props.data}}}>
                 <i className="fa fa-pencil-square"/>
               </Link>
-							<a onClick={() => props.delete(props.data.id, (props.index - 1))}>
+							<a onClick={deleteScreenplay}>
                 <i className="fa fa-trash"/>
               </a>
 					</span>

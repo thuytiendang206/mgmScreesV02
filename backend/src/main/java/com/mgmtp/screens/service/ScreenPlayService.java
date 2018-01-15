@@ -1,7 +1,7 @@
 package com.mgmtp.screens.service;
 
 import java.util.List;
-
+import com.mgmtp.screens.entity.UserEntity;
 import com.mgmtp.screens.model.ScreenPlayDTO;
 
 public interface ScreenPlayService {
@@ -13,6 +13,10 @@ public interface ScreenPlayService {
 	void deleteById(Integer id);
 
 	List<ScreenPlayDTO> findAll(boolean isAdmin);
+
+	List<ScreenPlayDTO> findAllByUser(String email);
+
+	void addNewScreenPlay(ScreenPlayDTO screenPlayDTO, UserEntity user);
 
 	void addNewScreenPlay(ScreenPlayDTO screenPlayDTO);
 
