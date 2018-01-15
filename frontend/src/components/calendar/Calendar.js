@@ -62,8 +62,8 @@ class Calendar extends React.Component {
         return (
             <CalendarGUI events={this.state.events}
                 name={this.props.params.name}
-                maxTime={this.props.params['time-min']}
-                minTime={this.props.params['time-max']}
+                maxTime={this.props.params['time-max']}
+                minTime={this.props.params['time-min']}
             >
             </CalendarGUI>
         )
