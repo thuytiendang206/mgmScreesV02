@@ -9,11 +9,14 @@ import './font/weathericons-regular-webfont.svg';
 import './font/weathericons-regular-webfont.ttf';
 import './font/weathericons-regular-webfont.woff';
 import './font/weathericons-regular-webfont.woff2';
-import { getWindDegIcon, getBackgroundColor, convertCtoF, getStyles } from './actions';
-import axios from 'axios';
+import { convertCtoF, getBackgroundColor, getStyles, getWindDegIcon } from './actions';
+
+import { fetchAPIData } from '../../fetchAPIDataUtil';
+
 
 const rootUrl = 'http://api.openweathermap.org/data/2.5/weather?q=';
 const apiUrl = '&appid=9deb1490da7395429f58c27e7cf9746c';
+const EX_SECOND = 10;
 
 class Weather extends React.Component {
 
@@ -22,20 +25,20 @@ class Weather extends React.Component {
         this.state = { wind: {} }
     }
 
-    getWeather(props) {
+    async getWeather(props) {
         let url = rootUrl + props.city + apiUrl;
-        axios.get(url)
-            .then(res => {
-                this.setState({
-                    temp: Math.round(res.data.main.temp - 273.15),
-                    humidity: res.data.main.humidity,
-                    wind: {
-                        speed: res.data.wind.speed.toFixed(1),
-                        iconDeg: getWindDegIcon(res.data.wind.deg)
-                    },
-                    icon: res.data.weather[0].id,
-                });
+        let value = await fetchAPIData(`weather${props.city}`, url, EX_SECOND);
+        if (value !== null) {
+            this.setState({
+                temp: Math.round(value.main.temp - 273.15),
+                humidity: value.main.humidity,
+                wind: {
+                    speed: value.wind.speed.toFixed(1),
+                    iconDeg: getWindDegIcon(value.wind.deg)
+                },
+                icon: value.weather[0].id,
             })
+        }
     }
 
     render() {
@@ -49,7 +52,7 @@ class Weather extends React.Component {
             : undefined;
         const styles = getStyles(this.props.widthSize, this.props.heightSize)
         return (
-            <div className={backgroundColorClass} style={styles.parentsSize} >
+            <div className={backgroundColorClass} style={styles.parentsSize}>
                 <h1 className="city" style={styles.city}>{this.props.params.city}</h1>
                 <div className='weather' style={styles.weather}>
                     <i className={weatherClass} style={styles.wi}/>

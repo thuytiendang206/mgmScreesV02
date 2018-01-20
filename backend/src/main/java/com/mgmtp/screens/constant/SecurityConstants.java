@@ -8,4 +8,5 @@ public class SecurityConstants {
     public static final String HEADER_STRING = "Authorization";
     public static final String USER_URL = "/api/user/**";
     public static final String PUBLIC_SCREENPLAY_URL = "/api/screenplay/**";
+    public static final String REMOTE_API = "/api/remoteAPI/";
 }

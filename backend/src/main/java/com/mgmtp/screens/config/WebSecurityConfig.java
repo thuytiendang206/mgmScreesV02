@@ -3,16 +3,16 @@ package com.mgmtp.screens.config;
 import com.mgmtp.screens.filter.JWTAuthorizationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-import static com.mgmtp.screens.constant.VMLocation.*;
 import static com.mgmtp.screens.constant.SecurityConstants.*;
+import static com.mgmtp.screens.constant.VMLocation.*;
 
 @Configuration
 @EnableWebSecurity
@@ -35,6 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable().cors().and().authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers(USER_URL).permitAll()
+                .antMatchers(REMOTE_API).permitAll()
                 .antMatchers(PUBLIC_SCREENPLAY_URL).permitAll()
                 .anyRequest().authenticated()
                 .and()
