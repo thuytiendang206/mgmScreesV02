@@ -5,48 +5,49 @@ import axios from 'axios';
 
 class Location extends Component {
 
-  DataUrl = process.env.REACT_APP_BACKEND_URL + "api/screenplay/";
+  dataUrl = process.env.REACT_APP_BACKEND_URL + "api/screenplay/";
 
   constructor(props) {
     super(props);
     this.state = {
-      errorOccured: false
+      errorOccurred: false
     }
   }
 
-  fetchData() {
-    axios.get(this.getUrl())
-      .then(res => {
-        if (typeof (res.data) === "object") {
-          this.setState({
-            data: res.data
-          });
-        }
-        else {
-          this.setState({ errorOccured: true });
-        }
-      }, () => { this.setState({ errorOccured: true }); })
+  async componentDidMount() {
+    try {
+      let res = await axios.get(this.getUrl());
+      if (typeof (res.data) === "object") {
+        this.setState({
+          data: res.data
+        });
+      }
+      else {
+        this.setState({ errorOccurred: true });
+      }
+    } catch (e) {
+      this.setState({ errorOccurred: true });
+    }
   }
 
   getUrl() {
-    console.log(this.DataUrl);
-    const defaultScreen = this.DataUrl + 'default';
-    const url = window.location.href;
+    const defaultScreen = this.dataUrl + 'default';
+    let url = window.location.href;
     const substring = "screenplay=";
-    if (url.indexOf(substring) == -1) return defaultScreen;
+    if (url.indexOf(substring) === -1) return defaultScreen;
     else {
-      var params = this.getQueryVariable("screenplay");
-      params = this.DataUrl + params;
+      let params = this.getQueryVariable("screenplay");
+      params = this.dataUrl + params;
       return params;
     }
   }
 
   getQueryVariable(variable) {
-    var query = window.location.search.substring(1);
-    var vars = query.split('&');
-    for (var i = 0; i < vars.length; i++) {
-      var pair = vars[i].split('=');
-      if (decodeURIComponent(pair[0]) == variable) {
+    let query = window.location.search.substring(1);
+    let vars = query.split('&');
+    for (let i = 0; i < vars.length; i++) {
+      let pair = vars[i].split('=');
+      if (decodeURIComponent(pair[0]) === variable) {
         return decodeURIComponent(pair[1]);
       }
     }
@@ -54,7 +55,7 @@ class Location extends Component {
   }
 
   render() {
-    const component = this.state.errorOccured
+    const component = this.state.errorOccurred
       ? <Error />
       : this.state.data
         ? <TogglePages url={this.state.data} />
@@ -64,10 +65,6 @@ class Location extends Component {
         {component}
       </div>
     );
-  }
-
-  componentDidMount() {
-    this.fetchData();
   }
 }
 

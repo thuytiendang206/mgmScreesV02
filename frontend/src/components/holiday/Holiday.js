@@ -35,7 +35,7 @@ class Holiday extends Component {
             <div className="holiday-Bg">
                 <div className="col-md-12 holiday-content">
                     <p className="holiday-header">
-                        <span className="wapper-logo-mgm"><img className="logo-mgm" style={styles.logomgm} src='./images/mgm-logo.svg' /> </span>
+                        <span className="wapper-logo-mgm"><img className="logo-mgm" style={styles.logomgm} src='./images/mgm-logo.svg' alt="" /> </span>
                         <span className="holiday-title" style={styles.holidayTitle}>International Holidays</span>
                     </p>
                     <div className="row wrapper">

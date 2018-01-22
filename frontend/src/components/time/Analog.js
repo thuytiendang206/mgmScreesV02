@@ -7,9 +7,11 @@ class Analog extends React.Component {
     super(props);
     this.state = {
       timer: setInterval(this.setDate.bind(this), 1000),
-      secondDegrees: (this.getTime('ss') / 60) * 360 + 90,
-      minuteDegrees: (this.getTime('mm') / 60) * 360 + 90,
-      hourDegrees: (this.getTime('HH') / 12) * 360 + 90
+      secondDegrees: this.getTime('ss') * 6 + 90,
+      minuteDegrees: this.getTime('mm') * 6 + 90,
+      hourDegrees: this.getTime('HH') > 12
+        ? (this.getTime('HH') - 12 + this.getTime('mm') / 60) * 30 + 90
+        : (this.getTime('HH') + this.getTime('mm') / 60) * 30 + 90
     }
   }
 
@@ -23,15 +25,17 @@ class Analog extends React.Component {
 
   setDate() {
     this.setState({
-      secondDegrees: (this.getTime('ss') / 60) * 360 + 90,
-      minuteDegrees: (this.getTime('mm') / 60) * 360 + 90,
-      hourDegrees: (this.getTime('HH') / 12) * 360 + 90
+      secondDegrees: this.getTime('ss') * 6 + 90,
+      minuteDegrees: this.getTime('mm') * 6 + 90,
+      hourDegrees: this.getTime('HH') > 12
+        ? (this.getTime('HH') - 12 + this.getTime('mm') / 60) * 30 + 90
+        : (this.getTime('HH') + this.getTime('mm') / 60) * 30 + 90
     });
   }
 
   render() {
-    let width = parseInt(this.props.analogStyle.width);
-    let minHeight = parseInt(this.props.analogStyle.minHeight);
+    let width = parseInt(this.props.analogStyle.width, 10);
+    let minHeight = parseInt(this.props.analogStyle.minHeight, 10);
     let size = (width < minHeight) ? width * 0.95 : minHeight * 0.95;
     return (
       <div className="clock-container" style={this.props.analogStyle}>

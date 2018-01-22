@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { handleUpComingHoliday, getStyles } from './action';
+import { getStyles } from './action';
 
 class TodayItem extends Component {
 
