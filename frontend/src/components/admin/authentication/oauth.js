@@ -3,7 +3,7 @@ import jwt_decode from 'jwt-decode';
 export function loggedIn() {
   return (localStorage["access-token"] && !isTokenExpired(localStorage["access-token"]))
     ? localStorage["access-token"]
-    : undefined;
+    : "";
 }
 
 function isTokenExpired(token){
@@ -17,5 +17,5 @@ function isTokenExpired(token){
 }
 
 export function logOut() {
-  return localStorage["access-token"] = undefined;
+  return localStorage["access-token"] = "";
 }

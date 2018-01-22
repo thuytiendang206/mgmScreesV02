@@ -1,5 +1,12 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import AppParams from './AppParams';
+import PageBase from '../components/PageBase';
+import SelectField from 'material-ui/SelectField';
+import styles from './FormsStyle';
+import RaisedButton from 'material-ui/RaisedButton';
+import AvReplay from 'material-ui/svg-icons/av/replay';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+import Data from '../data'
 
 class AppForm extends Component {
 
@@ -11,81 +18,83 @@ class AppForm extends Component {
     this.addParameter = this.addParameter.bind(this);
   }
 
-  reset(){
+  reset() {
     this.props.onChange("app", "type", "");
     this.props.onChange("app", "parameters", []);
   }
 
-  addParameter() {
-    let parameter = {
-      key: "",
-      value: ""
+  addParameter(type) {
+    if (!type) {
+      let parameter = {
+        key: "",
+        value: ""
+      }
+      let parameters = [...this.props.data.parameters, parameter];
+      this.props.onChange("app", "parameters", parameters);
+    }else{
+      let parameters = [...Data.parameters[type]].map(parameter => ({...parameter}));
+      this.props.onChange("app","parameters", parameters)
     }
-    let parameters = [...this.props.data.parameters, parameter];
-    this.props.onChange("app", "parameters", parameters);
   }
 
   saveParameters(position, isKey, value) {
-    let parameters = this.props.data.parameters;
+    let parameters = [...this.props.data.parameters];
     if (isKey) {
       parameters[position].key = value;
     } else {
       parameters[position].value = value;
     }
-    this.props.onChange("app","parameters",parameters);
+    this.props.onChange("app", "parameters", parameters);
   }
 
-  typeChangeListener(event) {
-    this.props.onChange("app", "type", event.target.value);
+  typeChangeListener(event, index, value) {
+    this.props.onChange("app", "type", value);
+    this.addParameter(value)
   }
 
   render() {
     return (
-      <div className="col-md-6">
-        <div className="panel panel-default">
-          <div className="panel-heading">
-            <h3>New App</h3>
+      <PageBase title="App">
+        <div>
+          <SelectField
+            floatingLabelText="Type"
+            value={this.props.data.type}
+            onChange={this.typeChangeListener}
+            fullWidth={true}
+          >
+            {Data.componentName}
+          </SelectField>
+          <div>
+            <label>Parameter</label>
           </div>
-          <div className="panel-body">
-            <div className="form-horizontal">
-              <div className="form-group">
-                <label className="control-label col-md-2">Type:</label>
-                <div className="col-md-10">
-                  <input type="text" className="form-control" placeholder="Enter Type"
-                         value={this.props.data.type}
-                         onChange={this.typeChangeListener}
-                  />
-                </div>
-              </div>
-              <div className="form-group">
-                <label className="control-label col-md-2">Parameters:</label>
-                <div className="col-md-10 text-right">
-                  <button className="btn btn-primary" onClick={this.addParameter}>
-                    <span><i className="fa fa-plus"/></span>
-                  </button>
-                </div>
-              </div>
-              {
-                this.props.data.parameters.map(
-                                      (element, index) => <AppParams
-                                                              parameter={element}
-                                                              key={index}
-                                                              index={index}
-                                                              onChange={this.saveParameters}/>
-                )
-              }
-            </div>
+          <div>
+            {
+              this.props.data.parameters.map(
+                (element, index) => <AppParams
+                  parameter={element}
+                  key={index}
+                  index={index}
+                  onChange={this.saveParameters} />
+              )
+            }
           </div>
-          <div className="panel-footer">
-            <div className="text-right">
-              <button className="btn btn-danger margin15" onClick={this.reset}>
-                <span><i className="fa fa-refresh"/> Reset</span>
-              </button>
-            </div>
+          <div style={styles.buttons}>
+            <RaisedButton
+              label="New Parameter"
+              primary={true}
+              style={styles.buttonAdd}
+              onClick={() => { this.addParameter(false) } }
+              icon={<ContentAdd />}
+            />
+            <RaisedButton label="Reset"
+              onClick={this.reset}
+              style={styles.saveButton}
+              icon={<AvReplay />}
+            />
           </div>
         </div>
-      </div>
-    );
+      </PageBase>
+    )
   }
 }
 

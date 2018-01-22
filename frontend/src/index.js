@@ -6,4 +6,9 @@ import CoreRouter from './components/router/CoreRouter';
 import './static/css/bootstrap3_3_7.min.css';
 import './static/css/font-awesome.min.css';
 import './index.css';
-ReactDOM.render(<CoreRouter />, document.getElementById('root'));
+import { BrowserRouter } from 'react-router-dom';
+ReactDOM.render(
+    <BrowserRouter>
+        <CoreRouter />
+    </BrowserRouter>
+    , document.getElementById('root'));

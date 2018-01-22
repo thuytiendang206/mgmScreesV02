@@ -1,7 +1,12 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import AppForm from './AppForm';
-import ErrorMessage from './ErrorMessage';
-
+import PageBase from '../components/PageBase';
+import TextField from 'material-ui/TextField';
+import SelectField from 'material-ui/SelectField';
+import styles from './FormsStyle';
+import RaisedButton from 'material-ui/RaisedButton';
+import AvNotInterested from 'material-ui/svg-icons/av/not-interested';
+import Data from '../data'
 class ScreenForm extends Component {
 
   min = 1;
@@ -10,7 +15,8 @@ class ScreenForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      errorMessage: ""
+      errorMessageRows: undefined,
+      errorMessageCols: undefined
     };
     this.cancelForm = this.cancelForm.bind(this);
     this.checkRows = this.checkRows.bind(this);
@@ -22,32 +28,32 @@ class ScreenForm extends Component {
     let value = parseInt(event.target.value, 10);
     if (value > this.max || value < this.min) {
       this.setState({
-        errorMessage: `${value} is invalid number for rows. The value is between ${this.min} and ${this.max}`
+        errorMessageRows: `${value} is invalid number for rows. Maximum is ${this.max}`
       });
-    } else {
-      this.props.onRowsChange(value);
-      this.setState({
-        errorMessage: ""
-      });
+      return;
     }
+    this.props.onRowsChange(value);
+    this.setState({
+      errorMessageRows: undefined
+    });
   }
 
   checkCols(event) {
     let value = parseInt(event.target.value, 10);
     if (value > this.max || value < this.min) {
       this.setState({
-        errorMessage: `${value} is invalid number for cols. The value is between ${this.min} and ${this.max}`
+        errorMessageCols: `${value} is invalid number for cols. Maximum is ${this.max}`
       });
-    } else {
-      this.props.onColsChange(value);
-      this.setState({
-        errorMessage: ""
-      });
+      return;
     }
+    this.props.onColsChange(value);
+    this.setState({
+      errorMessageCols: undefined
+    });
   }
 
-  onAnimationChange(event) {
-    this.props.onChange("screen","animation-type",event.target.value)
+  onAnimationChange(event, index, value) {
+    this.props.onChange("screen", "animation-type", value)
   }
 
   cancelForm() {
@@ -64,95 +70,94 @@ class ScreenForm extends Component {
           ? this.props.screen.apps[num].type
           : undefined;
         if (!name) {
-          name = <i className="fa fa-plus-circle"/>;
+          name = <i className="fa fa-plus-circle" style={styles.plusCircle} />;
         }
         cells.push(
           <td className="text-center pointer" key={num}
-              onClick={() => this.props.showAppForm(true, this.props.screen.apps[num])}>
+            onClick={() => this.props.showAppForm(true, this.props.screen.apps[num])}>
             {name}
           </td>
         )
       }
       rows.push(<tr key={i}>{cells}</tr>)
     }
-
     return (
       <div className="row">
-        <div className="col-md-6">
-          <div className="panel panel-default">
-            <div className="panel-heading">
-              <h3>New Screen</h3>
-            </div>
-            <div className="panel-body">
-              <div className="form-group">
-                <ErrorMessage message={this.state.errorMessage}/>
-              </div>
-              <div className="form-horizontal">
-                <div className="form-group">
-                  <label className="control-label col-md-2">Type:</label>
-                  <div className="col-md-10">
-                    <input type="text" className="form-control" placeholder="Enter Type"
-                           defaultValue={this.props.screen.type} disabled/>
-                  </div>
-                </div>
-                <div className="form-group">
-                  <label className="control-label col-md-2">Animation Type:</label>
-                  <div className="col-md-10">
-                    <select type="text" className="form-control"
-                            defaultValue={this.props.screen["animation-type"]}
-                            onChange={this.onAnimationChange}>
-                      <option>slide-right</option>
-                      <option>slide-left</option>
-                      <option>fade</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="form-group">
-                  <label className="control-label col-md-2">Rows:</label>
-                  <div className="col-md-10">
-                    <input type="number" className="form-control" placeholder="Enter Rows"
-                           value={this.props.screen.rows} max={this.max} min={this.min}
-                           onChange={this.checkRows}/>
-                  </div>
-                </div>
-                <div className="form-group">
-                  <label className="control-label col-md-2">Columns:</label>
-                  <div className="col-md-10">
-                    <input type="number" className="form-control" placeholder="Enter Columns"
-                           value={this.props.screen.cols} max={this.max} min={this.min}
-                           onChange={this.checkCols}/>
-                  </div>
-                </div>
-                <div className="form-group">
-                  <label className="control-label col-md-2">Apps:</label>
-                  <div className="col-md-10 text-left">
-                    <table className="table table-bordered">
-                      <tbody>
+        <div className="col-md-6 col-sm-12 col-xs-12">
+          <PageBase title="Screen">
+            <div>
+              <TextField
+                id="type"
+                name="Type"
+                floatingLabelText="Type"
+                fullWidth={true}
+                type="text"
+                value={this.props.screen.type}
+                disabled={true}
+              />
+              <SelectField
+                floatingLabelText="Animation Type"
+                value={this.props.screen["animation-type"]}
+                onChange={this.onAnimationChange}
+                fullWidth={true}
+              >
+                {Data.animationType}
+              </SelectField>
+              <TextField
+                floatingLabelText="Rows:"
+                fullWidth={true}
+                type="number"
+                hintText="Enter number of rows. Such as: 1,2,3..."
+                value={this.props.screen.rows}
+                min={this.min}
+                max={this.max}
+                errorText={this.state.errorMessageRows}
+                onChange={this.checkRows}
+              />
+              <TextField
+                floatingLabelText="Columns:"
+                fullWidth={true}
+                type="number"
+                hintText="Enter number of Columns. Such as: 1,2,3..."
+                value={this.props.screen.cols}
+                min={this.min}
+                max={this.max}
+                errorText={this.state.errorMessageCols}
+                onChange={this.checkCols}
+              />
+              <div>
+                <label style={styles.labelApps}>Apps:</label>
+                <div className="col-md-12 text-left">
+                  <table className="table table-bordered">
+                    <tbody>
                       {rows}
-                      </tbody>
-                    </table>
-                  </div>
+                    </tbody>
+                  </table>
                 </div>
               </div>
-            </div>
-            <div className="panel-footer">
-              <div className="text-right">
-                <button className="btn btn-danger margin15" onClick={this.cancelForm}>
-                  <span><i className="fa fa-ban"/> Cancel</span></button>
+              <br />
+              <div style={styles.buttons}>
+                <RaisedButton label="Cancel"
+                  onClick={this.cancelForm}
+                  style={styles.saveButton}
+                  icon={<AvNotInterested/>}
+                />
               </div>
             </div>
-          </div>
+          </PageBase>
         </div>
-        {
-          this.props.activatedAppForm
-          ? <AppForm data={this.props.appData}
-                     showAppForm={this.props.showAppForm}
-                     onChange={this.props.onChange}
-                     addParameter={this.props.addParameter} />
-          : undefined
-        }
+        <div className="col-md-6 col-sm-12 col-xs-12" >
+          {
+            this.props.activatedAppForm
+              ? <AppForm data={this.props.appData}
+                showAppForm={this.props.showAppForm}
+                onChange={this.props.onChange}
+                addParameter={this.props.addParameter} />
+              : undefined
+          }
+        </div>
       </div>
-    );
+    )
   }
 }
 

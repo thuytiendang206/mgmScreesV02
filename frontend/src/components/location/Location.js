@@ -32,7 +32,7 @@ class Location extends Component {
 
   getUrl() {
     const defaultScreen = this.dataUrl + 'default';
-    let url = window.location.href;
+    const url = window.location.href;
     const substring = "screenplay=";
     if (url.indexOf(substring) === -1) return defaultScreen;
     else {

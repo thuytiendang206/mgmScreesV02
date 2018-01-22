@@ -1,12 +1,17 @@
-import React, {Component} from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import AdminManagement from './dashboard/AdminManagement';
-import ScreenPlayForm from './forms/ScreenPlayForm';
-import LoginPage from './authentication/LoginPage';
-import RegisterPage from "./authentication/RegisterPage";
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import axios from 'axios';
-import {loggedIn} from "./authentication/oauth";
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import './styles.scss';
+import 'font-awesome/css/font-awesome.css';
+import 'flexboxgrid/css/flexboxgrid.css';
+import App from './containers/App';
+import Error from '../error404/Error.js';
+import FormPage from './containers/FormPage';
+import Dashboard from './containers/DashboardPage';
 
+import { loggedIn } from "./authentication/oauth";
+injectTapEventPlugin();
 class Admin extends Component {
 
   url_backend = process.env.REACT_APP_BACKEND_URL + "admin/api/screenplay/";
@@ -23,7 +28,7 @@ class Admin extends Component {
   }
 
   async componentDidMount() {
-    if(this.state.accessToken){
+    if (this.state.accessToken) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${this.state.accessToken}`;
       let data = await axios.get(this.url_backend);
       this.setState({
@@ -78,25 +83,24 @@ class Admin extends Component {
 
   render() {
     return (
-      <Router>
-        <Switch>
-          {
-            this.state.accessToken
-              ? <Route exact path={this.props.match.url}
-                       render={(props) => <AdminManagement data={this.state.data}
-                                                           delete={this.deleteScreenPlay}{...props}/>}/>
-              : <Route exact path={this.props.match.url}
-                       render={(props) => <LoginPage {...props}/>}/>
-          }
-          <Route path={`${this.props.match.url}/login`}
-                 render={(props) => <LoginPage {...props}/>}/>
-          <Route path={`${this.props.match.url}/register`}
-                 render={(props) => <RegisterPage {...props}/>}/>
-          <Route path={`${this.props.match.url}/screenplay`}
-                 render={(props) => <ScreenPlayForm update={this.updateScreenPlay}
-                                                    save={this.saveScreenPlay}{...props}/>}/>
-        </Switch>
-      </Router>
+      <div>
+        {
+          this.state.accessToken
+            ? < App >
+              <Switch>
+                <Route exact path={this.props.match.url} render={(props) => <Dashboard data={this.state.data}
+                  delete={this.deleteScreenPlay} {...props} />} />
+                <Route path={`${this.props.match.url}/dashboard`}
+                  render={(props) => <Dashboard data={this.state.data}
+                    delete={this.deleteScreenPlay} {...props} />} />
+                <Route path={`${this.props.match.url}/form`}
+                  render={(props) => <FormPage updateData={this.updateScreenPlay} save={this.saveScreenPlay} {...props} />} />
+                <Route path="*" component={Error} />
+              </Switch>
+            </App >
+            : <Redirect to={`${this.props.match.url}/login`} />
+        }
+      </div>
     );
   }
 }

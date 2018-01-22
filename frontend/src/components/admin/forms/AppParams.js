@@ -1,17 +1,30 @@
 import React from 'react';
+import TextField from 'material-ui/TextField';
 
 const AppForm = (props) => {
   return (
-    <div className="form-group">
-      <label className="control-label col-md-2">Key:</label>
+    <div className="row">
       <div className="col-md-4">
-        <input type="text" className="form-control" value={props.parameter.key}
-               onChange={evt => props.onChange(props.index, true, evt.target.value)} placeholder="Enter Key"/>
+        <TextField
+          id="Key"
+          name="Key"
+          floatingLabelText="Key"
+          fullWidth={true}
+          type="text"
+          value={props.parameter.key}
+          onChange={evt => props.onChange(props.index, true, evt.target.value)}
+        />
       </div>
-      <label className="control-label col-md-2">Value:</label>
-      <div className="col-md-4">
-        <input type="text" className="form-control" value={props.parameter.value}
-               onChange={evt => props.onChange(props.index, false, evt.target.value)} placeholder="Enter Value"/>
+      <div className="col-md-8">
+        <TextField
+          id="Value"
+          name="Value"
+          floatingLabelText="Value"
+          fullWidth={true}
+          type="text"
+          onChange={evt => props.onChange(props.index, false, evt.target.value)}
+          value={props.parameter.value}
+        />
       </div>
     </div>
   )
