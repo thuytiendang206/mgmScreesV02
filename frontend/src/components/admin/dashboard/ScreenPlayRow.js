@@ -25,6 +25,7 @@ class ScreenPlayRow extends React.Component {
   };
 
   deleteScreenplay = () => {
+    this.handleClose();
     this.props.delete(this.props.data.id, (this.props.index - 1));
   }
 
