@@ -3,8 +3,8 @@ const styles = {
     floatingActionButton: {
         margin: 0,
         top: 'auto',
-        right: 20,
-        bottom: 250,
+        right: 25,
+        bottom: 160,
         left: 'auto',
         position: 'fixed',
     },
